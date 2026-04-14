@@ -1,3 +1,0 @@
-/* LOGIC STEPS */
-
-// GAME MENTOR

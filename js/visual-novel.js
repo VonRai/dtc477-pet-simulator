@@ -13,13 +13,6 @@ is displayed and the VN GUI is hidden.
 */
 
 // GAME MENTOR
-document.getElementById("startbtn").addEventListener("click", function () {
-    document.getElementById("title").style.display = "none";
-    document.getElementById("dialogue").style.display = "block";
-    dialogueText.textContent = dialogue.text[currentLine];
-    console.log("yes")
-});
-
 let currentLine = 0
 let dialogue = {
     speaker: "You",
@@ -31,12 +24,21 @@ let dialogue = {
 
 let dialogueText = document.getElementById("textbox");
 
+document.getElementById("startbtn").addEventListener("click", function () {
+    document.getElementById("title").style.display = "none";
+    document.getElementById("dialogue").style.display = "block";
+    dialogueText.textContent = dialogue.text[currentLine];
+    console.log("yes")
+});
+
 document.getElementById("nextbtn").addEventListener("click", function () {
     currentLine += 1;
     if (currentLine < dialogue.text.length) {
         dialogueText.textContent = dialogue.text[currentLine];
     }
     else {
-        dialogue.trigger();
+        if (dialogue.trigger) {
+            dialogue.trigger();
+        }
     }
 });

@@ -7,9 +7,9 @@ The creature sprite appears in the center of the Canvas.
 2. An object list stores the variables for three food items. Each food item
 has an x and y coordinate, a width and height, a base png and a silhouette png.
 3. 
-
 */
 
+// DEVELOPER: VON MILLER
 // GAME MENTOR
 let sprite = new Image();
 sprite.src = "img/creature.jpg";
@@ -19,9 +19,9 @@ let currentFoodIndex = 0;
 
 // Y1 is for silhouettes, Y2 is for the interactive option.
 let fooditems = [
-    { image: 'img/food1.jpg', silhouette: 'img/food1-silhouette.jpg', x: 520, y: 550, width: 100, height: 100, name: 'Apple' },
-    { image: 'img/food2.jpg', silhouette: 'img/food2-silhouette.jpg', x: 720, y: 550, width: 100, height: 100, name: 'Cheese' },
-    { image: 'img/food3.jpg', silhouette: 'img/food3-silhouette.jpg', x: 920, y: 550, width: 100, height: 100, name: 'Fish' },
+    { image: 'img/food1.jpg', silhouette: 'img/food1-silhouette.jpg', x: 150, y: 350, width: 80, height: 80, name: 'Apple' },
+    { image: 'img/food2.jpg', silhouette: 'img/food2-silhouette.jpg', x: 250, y: 350, width: 80, height: 80, name: 'Cheese' },
+    { image: 'img/food3.jpg', silhouette: 'img/food3-silhouette.jpg', x: 350, y: 350, width: 80, height: 80, name: 'Fish' },
 ];
 
 let silhouetteImage = new Image();
@@ -35,6 +35,7 @@ fooditems.forEach(food => {
 });
 
 function stage1() {
+
     document.getElementById("dialogue").style.display = "none";
     console.log("stage1 start")
 
@@ -57,17 +58,27 @@ function stage1() {
                     if (currentFoodIndex < fooditems.length) {
                         correctFood = fooditems[currentFoodIndex];
                         silhouetteImage.src = correctFood.silhouette;
-                        drawStage1();
-
+                        silhouetteImage.onload = function () {
+                            drawStage1();
+                        }
                     } else {
-                        console.log("Stage complete!");
+                        currentDialogue = afterFoodDialogue;
+                        currentLine = 0;
+
+                        document.getElementById("canvasBox").style.display = "none";
+                        document.getElementById("dialogue").style.display = "block";
+                        document.getElementById("nextbtn").style.display = "block";
+
+                        dialogueText.textContent = currentDialogue.text[currentLine];
                     }
+                }
+                else {
+                    gameOver();
                 }
             }
         });
     });
     drawStage1()
-
 };
 
 function drawStage1() {
@@ -88,7 +99,7 @@ function drawStage1() {
     spriteX = canvas.width / 2 - 200;
     spriteY = canvas.height / 2 - 100;
     ctx.drawImage(sprite, spriteX, spriteY, 200, 200);
-    ctx.drawImage(silhouetteImage, spriteX, spriteY - 200, 100, 100)
+    ctx.drawImage(silhouetteImage, spriteX, spriteY - 100, 80, 80)
     ctx.restore();
 
 };

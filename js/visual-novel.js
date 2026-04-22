@@ -13,8 +13,9 @@ is displayed and the VN GUI is hidden.
 */
 
 // GAME MENTOR
-let currentLine = 0
-let dialogue = {
+let currentLine = 0;
+
+let introDialogue = {
     speaker: "You",
     text: ["Who are you?", "Come on in", "Do you want a snack?"],
     background: "door.png",
@@ -22,23 +23,57 @@ let dialogue = {
     trigger: stage1
 };
 
+let afterFoodDialogue = {
+    speaker: "You",
+    text: ["Text1", "Text2", "Text3"],
+    background: "outside.png",
+    sprite: "creature.png",
+    trigger: stage2
+};
+
+let afterSoccerDialogue = {
+    speaker: "You",
+    text: ["Text1", "Text2", "Text3"],
+    background: "livingroom.png",
+    sprite: "creature.png",
+    trigger: stage3
+};
+
+// After Stage 3: Hide & Seek
+let endDialogue = {
+    speaker: "You",
+    text: ["Text1", "Text2", "Text3"],
+    background: "bedroom.png",
+    sprite: "creature.png",
+    trigger: null
+};
+
+let currentDialogue = introDialogue;
+
 let dialogueText = document.getElementById("textbox");
 
 document.getElementById("startbtn").addEventListener("click", function () {
     document.getElementById("title").style.display = "none";
     document.getElementById("dialogue").style.display = "block";
-    dialogueText.textContent = dialogue.text[currentLine];
+    dialogueText.textContent = currentDialogue.text[currentLine];
     console.log("yes")
 });
 
 document.getElementById("nextbtn").addEventListener("click", function () {
     currentLine += 1;
-    if (currentLine < dialogue.text.length) {
-        dialogueText.textContent = dialogue.text[currentLine];
+    if (currentLine < currentDialogue.text.length) {
+        dialogueText.textContent = currentDialogue.text[currentLine];
     }
     else {
-        if (dialogue.trigger) {
-            dialogue.trigger();
+        if (currentDialogue.trigger) {
+            currentDialogue.trigger();
         }
     }
 });
+
+function gameOver() {
+    document.getElementById("canvasBox").style.display = "none";
+    document.getElementById("dialogue").style.display = "block";
+    document.getElementById("nextbtn").style.display = "none";
+    dialogueText.textContent = "Game over!"
+}

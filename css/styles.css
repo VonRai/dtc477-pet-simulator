@@ -15,3 +15,7 @@ html {
     justify-content: center;
     margin: auto;
 }
+
+.hide {
+    display: none;
+}

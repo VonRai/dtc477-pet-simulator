@@ -5,57 +5,89 @@
 // GAME MENTOR
 
 ctx = canvas.getContext('2d');
-canvas.style.backgroundColor = "green";
+let couchOpen = document.getElementById("couch");
+let drawerOpen = document.getElementById("drawer");
+let lampOpen = document.getElementById("lamp");
+let safeOpen = document.getElementById("safe");
+let carpetOpen = document.getElementById("carpet");
+let livingRoom = document.getElementById("living-room");
 
 let gameState = "playing";
 
+// OBJECTS
 const cushion = {
-    xClosed: 100,
-    yClosed: 150,
+    xClosed: 70,
+    yClosed: 190,
 
-    xOpen: 100,
-    yOpen: 200,
+    xOpen: 60,
+    yOpen: 150,
 
-    width: 100,
-    height: 40,
+    width: 130,
+    height: 140,
 
     isOpen: false,
     win: false
 };
 
 const drawer = {
-    xClosed: 50,
-    yClosed: 100,
+    xClosed: 490,
+    yClosed: 180,
 
-    xOpen: 300,
-    yOpen: 200,
+    xOpen: 430,
+    yOpen: 180,
 
     width: 100,
-    height: 40,
+    height: 100,
 
     isOpen: false,
     win: false
 };
 
 const lampshade = {
-    xClosed: 300,
-    yClosed: 100,
+    xClosed: 110,
+    yClosed: 110,
 
-    xOpen: 300,
-    yOpen: 200,
+    xOpen: 100,
+    yOpen: 70,
 
     width: 100,
-    height: 40,
+    height: 100,
 
     isOpen: false,
     win: true
 };
 
-//console.log(`Cushion: ${cushion.isOpen}`)
-//console.log(`Drawer: ${drawer.isOpen}`);
+const safe = {
+    xClosed: 190,
+    yClosed: 0,
 
-const objects = [cushion, drawer, lampshade];
+    xOpen: 190,
+    yOpen: 0,
 
+    width: 230,
+    height: 120,
+
+    isOpen: false,
+    win: false
+}
+
+const carpet = {
+    xClosed: 250,
+    yClosed: 200,
+
+    xOpen: 250,
+    yOpen: 200,
+
+    width: 200,
+    height: 250,
+
+    isOpen: false,
+    win: false
+}
+
+const objects = [cushion, drawer, lampshade, safe, carpet];
+
+// INTERACTION
 canvas.addEventListener("click", (e) => {
     if (gameState !== "playing") {
         console.log("win");
@@ -100,6 +132,7 @@ canvas.addEventListener("click", (e) => {
 function stage3(timestamp) {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(livingRoom, 0, 0, 600, 450);
 
     // TIMER
     let timer = 10;
@@ -113,6 +146,7 @@ function stage3(timestamp) {
         if (timer <= 0) {
             gameState = "lose";
             timer = 0;
+            console.log("lose");
             return;
         }
     }
@@ -135,7 +169,7 @@ function stage3(timestamp) {
     }
 
     ctx.fillStyle = "blue";
-    ctx.fillRect(drawX, drawY, cushion.width, cushion.height);
+    ctx.drawImage(couchOpen, drawX, drawY, cushion.width, cushion.height);
 
     if (drawer.isOpen) {
         drawX = drawer.xOpen;
@@ -146,7 +180,7 @@ function stage3(timestamp) {
     }
 
     ctx.fillStyle = "red";
-    ctx.fillRect(drawX, drawY, drawer.width, drawer.height);
+    ctx.drawImage(drawerOpen, drawX, drawY, drawer.width, drawer.height);
 
 
     if (lampshade.isOpen) {
@@ -158,10 +192,32 @@ function stage3(timestamp) {
     }
 
     ctx.fillStyle = "yellow";
-    ctx.fillRect(drawX, drawY, lampshade.width, lampshade.height);
+    ctx.drawImage(lampOpen, drawX, drawY, lampshade.width, lampshade.height);
+
+    if (safe.isOpen) {
+        drawX = safe.xOpen;
+        drawY = safe.yOpen;
+    } else {
+        drawX = safe.xClosed;
+        drawY = safe.yClosed;
+    }
+
+    ctx.fillStyle = "green";
+    ctx.drawImage(safeOpen, drawX, drawY, safe.width, safe.height);
+
+    if (carpet.isOpen) {
+        drawX = carpet.xOpen;
+        drawY = carpet.yOpen;
+    } else {
+        drawX = carpet.xClosed;
+        drawY = carpet.yClosed;
+    }
+
+    ctx.fillStyle = "purple";
+    ctx.drawImage(carpetOpen, drawX, drawY, carpet.width, carpet.height);
 
     requestAnimationFrame(stage3);
 
 }
 
-stage3();
+//stage3();

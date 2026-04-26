@@ -8,16 +8,69 @@ html {
 
 }
 
+h1 {
+    font-family: "Aclonica", sans-serif;
+    margin: 0;
+}
+
+h2 {
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    margin: 0.5em 0 0.5 0;
+}
+
+.gameBox {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    text-align: center;
+    width: 600px;
+    height: 450px;
+    background-color: azure;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    border: 4px solid #26123a;
+    box-shadow: 10px 10px rgb(83, 30, 88);
+}
+
 #dialogue {
     display: none;
 }
 
 #canvasBox {
-    display: flex;
-    justify-content: center;
-    margin: auto;
+    width: 600px;
+    height: 450px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid #26123a;
+    box-shadow: 10px 10px rgb(83, 30, 88);
 }
 
 .hide {
     display: none;
+}
+
+button {
+    width: 200px;
+    height: 30px;
+    margin: 0.5em;
+    border-radius: 0;
+    font-family: "Rubik", sans-serif;
+    background-color: white;
+    color: #26123a;
+    border: solid 2px #26123a;
+    box-shadow: 3px 3px rgb(83, 30, 88);
+    font-weight: 400;
+}
+
+button:hover {
+    background-color: #904899;
+    color: white;
 }

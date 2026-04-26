@@ -93,7 +93,7 @@ canvas.addEventListener("click", (e) => {
         console.log("win");
         return;
     }
-    
+
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
@@ -127,6 +127,16 @@ canvas.addEventListener("click", (e) => {
         }
     });
 })
+
+// Starting stage3 for transition
+function startStage3() {
+    document.getElementById("dialogue").style.display = "none";
+    document.getElementById("canvasBox").style.display = "block";
+
+    gameState = "playing";
+
+    requestAnimationFrame(stage3);
+}
 
 
 function stage3(timestamp) {

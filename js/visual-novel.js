@@ -36,7 +36,7 @@ let afterSoccerDialogue = {
     text: ["Text1", "Text2", "Text3"],
     background: "livingroom.png",
     sprite: "creature.png",
-    trigger: stage3
+    trigger: startStage3
 };
 
 // After Stage 3: Hide & Seek
@@ -70,6 +70,16 @@ document.getElementById("nextbtn").addEventListener("click", function () {
         }
     }
 });
+
+function resumeVN(nextDialogue) {
+    currentDialogue = nextDialogue;
+    currentLine = 0;
+
+    document.getElementById("canvasBox").style.display = "none";
+    document.getElementById("dialogue").style.display = "block";
+
+    dialogueText.textContent = currentDialogue.text[currentLine];
+}
 
 function gameOver() {
     document.getElementById("canvasBox").style.display = "none";

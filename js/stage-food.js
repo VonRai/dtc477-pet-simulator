@@ -15,7 +15,12 @@ let sprite = new Image();
 sprite.src = "img/creature.jpg";
 let spriteX
 let spriteY
-let currentFoodIndex = 0;
+let roundsWon = 0;
+let silhouetteTime = 3000;
+let canClick = false;
+let showSilhouette = true;
+let correctFood = null;
+let silhouetteImage = new Image();
 
 // Y1 is for silhouettes, Y2 is for the interactive option.
 let fooditems = [
@@ -24,62 +29,84 @@ let fooditems = [
     { image: 'img/food3.jpg', silhouette: 'img/food3-silhouette.jpg', x: 350, y: 350, width: 80, height: 80, name: 'Fish' },
 ];
 
-let silhouetteImage = new Image();
-let correctFood = fooditems[currentFoodIndex];
-console.log(correctFood)
-silhouetteImage.src = correctFood.silhouette;
-
 fooditems.forEach(food => {
     food.img = new Image();
     food.img.src = food.image;
+});
+
+
+canvas.addEventListener("click", function (event) {
+    if (!canClick) return;
+
+    let mouseX = event.offsetX;
+    let mouseY = event.offsetY;
+
+    fooditems.forEach(function (food) {
+
+        if (
+            mouseX > food.x &&
+            mouseX < food.x + food.width &&
+            mouseY > food.y &&
+            mouseY < food.y + food.height
+        ) {
+            if (food.name === correctFood.name) {
+
+                roundsWon++;
+
+                if (roundsWon < 5) {
+                    startRound();
+                } else {
+                    resumeVN(afterFoodDialogue);
+                }
+
+            } else {
+                gameOver();
+            }
+        }
+    });
 });
 
 function stage1() {
 
     document.getElementById("dialogue").style.display = "none";
     console.log("stage1 start")
-
-    // Add event listener for `click` events.
-    canvas.addEventListener("click", function (event) {
-        let mouseX = event.offsetX;
-        let mouseY = event.offsetY;
-
-        fooditems.forEach(function (food) {
-            if (
-                mouseX > food.x &&
-                mouseX < food.x + food.width &&
-                mouseY > food.y &&
-                mouseY < food.y + food.height
-            ) {
-                if (food.name === correctFood.name) {
-
-                    currentFoodIndex++;
-
-                    if (currentFoodIndex < fooditems.length) {
-                        correctFood = fooditems[currentFoodIndex];
-                        silhouetteImage.src = correctFood.silhouette;
-                        silhouetteImage.onload = function () {
-                            drawStage1();
-                        }
-                    } else {
-                        currentDialogue = afterFoodDialogue;
-                        currentLine = 0;
-
-                        document.getElementById("canvasBox").style.display = "none";
-                        document.getElementById("dialogue").style.display = "block";
-                        document.getElementById("nextbtn").style.display = "block";
-
-                        dialogueText.textContent = currentDialogue.text[currentLine];
-                    }
-                }
-                else {
-                    gameOver();
-                }
-            }
-        });
-    });
+    startRound();
     drawStage1()
 };
+
+function startRound() {
+    // make game slightly faster each round
+    silhouetteTime -= 500;
+
+    // prevent it from getting too fast
+    if (silhouetteTime < 1000) {
+        silhouetteTime = 1000;
+    }
+
+    // choose random food
+    let randomIndex = Math.floor(Math.random() * fooditems.length);
+    correctFood = fooditems[randomIndex];
+
+    // update silhouette image
+    silhouetteImage.src = correctFood.silhouette;
+
+    // show silhouette first
+    showSilhouette = true;
+    canClick = false;
+
+    silhouetteImage.src = correctFood.silhouette;
+
+    silhouetteImage.onload = function () {
+        drawStage1();
+    };
+
+    // hide silhouette after timer ends
+    setTimeout(function () {
+        showSilhouette = false;
+        canClick = true;
+        drawStage1();
+    }, silhouetteTime);
+}
 
 function drawStage1() {
     ctx.fillStyle = '#9be1f2';
@@ -99,7 +126,9 @@ function drawStage1() {
     spriteX = canvas.width / 2 - 200;
     spriteY = canvas.height / 2 - 100;
     ctx.drawImage(sprite, spriteX, spriteY, 200, 200);
-    ctx.drawImage(silhouetteImage, spriteX, spriteY - 100, 80, 80)
+    if (showSilhouette) {
+        ctx.drawImage(silhouetteImage, spriteX, spriteY - 100, 80, 80);
+    }
     ctx.restore();
 
 };

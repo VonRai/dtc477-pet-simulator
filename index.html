@@ -13,18 +13,26 @@
 
 <body>
     <!-- TITLE SCREEN -->
-    <div id="title" class="gameBox">
-        <h1>NIGHT ENCOUNTER</h1>
-        <h2>WILL THEY CRAWL INTO YOUR HEART?</h2>
-        <button id="startbtn">START</button>
-        <button id="creditsbtn">CREDITS</button>
-    </div>
-
-    <!-- VISUAL NOVEL -->
-    <div id="dialogue" class="gameBox">
-        <h3 id="name"></h3>
-        <p id="textbox"></p>
-        <button id="nextbtn">NEXT</button>
+    <div id="gameBox">
+        <div id="dragBar">
+            <span>Night Encounter</span>
+        </div>
+        <div id="title">
+            <h1>NIGHT ENCOUNTER</h1>
+            <h2>WILL THEY CRAWL INTO YOUR HEART?</h2>
+            <button id="startbtn">START</button>
+            <button id="creditsbtn">CREDITS</button>
+        </div>
+        <!-- VISUAL NOVEL -->
+        <div id="dialogue">
+            <h3 id="name"></h3>
+            <p id="textbox"></p>
+            <button id="nextbtn">NEXT</button>
+        </div>
+        <!-- CANVAS LAYER -->
+        <div id="canvasBox">
+            <canvas id="canvas" width="600" height="450"></canvas>
+        </div>
     </div>
 
     <!-- STAGE 1 / FOOD -->
@@ -35,10 +43,7 @@
 
     <!-- STAGE 3 / HIDE & SEEK -->
 
-    <!-- CANVAS LAYER -->
-    <div id="canvasBox">
-        <canvas id="canvas" width="600" height="450"></canvas>
-    </div>
+
 
 
     <!-- FOR LINKING TO CANVAS DISPLAY -->
@@ -54,9 +59,55 @@
     <script src="js/stage-hide.js"></script>
     <script src="js/stage-soccer.js"></script>
     <script src="js/visual-novel.js"></script>
+
+    <!-- UI LOGIC-->
     <script>
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext('2d');
+
+        // Make the DIV element draggable:
+        dragElement(document.getElementById("gameBox"));
+
+        function dragElement(element) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById("dragBar")) {
+                // if present, the header is where you move the DIV from:
+                document.getElementById("dragBar").onmousedown = dragMouseDown;
+            } else {
+                // otherwise, move the DIV from anywhere inside the DIV:
+                element.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                element.style.top = (element.offsetTop - pos2) + "px";
+                element.style.left = (element.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                // stop moving when mouse button is released:
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
     </script>
 
 </body>

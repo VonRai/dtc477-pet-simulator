@@ -14,13 +14,12 @@ Lose the match → game over
 //5. Game ends when a side earns 5 points.
 // GAME MENTOR LINK
 
-<<<<<<< Updated upstream
+
 // GAME MENTOR
 
 function stage2() {
     resumeVN(afterSoccerDialogue);
-}
-=======
+
 const canvas = document.getElementById('pongCanvas');
 const context = canvas.getContext('2d');
 const grid = 15;
@@ -194,3 +193,4 @@ document.addEventListener('keyup', function(e) {
 
 // start the game
 requestAnimationFrame(loop);
+};

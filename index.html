@@ -8,26 +8,64 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <title>GAME TITLE</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <title>NIGHT ENCOUNTER</title>
 </head>
 
 <body>
     <!-- TITLE SCREEN -->
+    <div id="gameLaunch" onclick="openGame()">
+        <img src="img/favicon.png" alt="Pixel art favicon of the Night Crawler">
+        <p>NIGHT_ENCOUNTER.EXE</p>
+    </div>
+
     <div id="gameBox">
         <div id="dragBar">
             <span>Night Encounter</span>
+            <div id="dragUI">
+                <span id="volumeMute" onclick="muteAudio()">
+                    <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M6 1H8V15H6L2 11H0V5H2L6 1Z" fill="#ffffff"></path>
+                            <path d="M14 8C14 5.79086 12.2091 4 10 4V2C13.3137 2 16 4.68629 16 8C16 11.3137 13.3137 14 10 14V12C12.2091 12 14 10.2091 14 8Z" fill="#ffffff"></path>
+                            <path d="M12 8C12 9.10457 11.1046 10 10 10V6C11.1046 6 12 6.89543 12 8Z" fill="#ffffff"></path>
+                        </g>
+                    </svg>
+                </span>
+                <span id="volumePlay" onclick="playMusic()">
+                    <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M8 1H6L2 5H0V11H2L6 15H8V1Z" fill="#ffffff"></path>
+                            <path d="M9.29289 6.20711L11.0858 8L9.29289 9.79289L10.7071 11.2071L12.5 9.41421L14.2929 11.2071L15.7071 9.79289L13.9142 8L15.7071 6.20711L14.2929 4.79289L12.5 6.58579L10.7071 4.79289L9.29289 6.20711Z" fill="#ffffff"></path>
+                        </g>
+                    </svg>
+                </span>
+                <span id="quit" onclick="closeGame()">
+                    <svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path fill="#ffffff" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"></path>
+                        </g>
+                    </svg>
+                </span>
+            </div>
         </div>
         <div id="title">
             <h1>NIGHT ENCOUNTER</h1>
             <h2>WILL THEY CRAWL INTO YOUR HEART?</h2>
-            <button id="startbtn">START</button>
-            <button id="creditsbtn">CREDITS</button>
+            <button id="startbtn" onclick="playClickSound()">START</button>
+            <button id="creditsbtn" onclick="playClickSound()">CREDITS</button>
         </div>
         <!-- VISUAL NOVEL -->
         <div id="dialogue">
             <h3 id="name"></h3>
             <p id="textbox"></p>
-            <button id="nextbtn">NEXT</button>
+            <button id="nextbtn" onclick="playClickSound()">NEXT</button>
         </div>
         <!-- CANVAS LAYER -->
         <div id="canvasBox">
@@ -64,6 +102,20 @@
     <script>
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext('2d');
+
+        function openGame() {
+            document.getElementById("gameBox").style.display = "flex";
+
+            playMusic();
+        }
+
+        function closeGame() {
+            document.getElementById("gameBox").style.display = "none";
+
+            introMusic.pause();
+            introMusic.currentTime = 0;
+
+        }
 
         // Make the DIV element draggable:
         dragElement(document.getElementById("gameBox"));
@@ -108,6 +160,35 @@
                 document.onmousemove = null;
             }
         }
+
+        //AUDIO
+
+        const clickSound = new Audio("audio/click.mp3");
+        const introMusic = new Audio("audio/intro-music.mp3");
+
+        clickSound.volume = 0.5;
+        introMusic.volume = 0.1;
+        introMusic.loop = true; // keeps music looping
+
+        function playClickSound() {
+            clickSound.currentTime = 0;
+            clickSound.play();
+        }
+
+        function playMusic() {
+            document.getElementById("volumePlay").style.display = "none";
+            document.getElementById("volumeMute").style.display = "flex";
+
+            introMusic.play();
+        }
+
+        function muteAudio() {
+            document.getElementById("volumeMute").style.display = "none";
+            document.getElementById("volumePlay").style.display = "flex";
+
+            introMusic.pause();
+        }
+
     </script>
 
 </body>

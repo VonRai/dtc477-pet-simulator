@@ -17,25 +17,25 @@ let currentLine = 0;
 
 let introDialogue = {
     speaker: "You",
-    text: ["Who are you?", "Come on in", "Do you want a snack?"],
-    background: "door.png",
-    sprite: "creature.png",
+    text: ["ONE LATE NIGHT YOU HEAR A SCRATCHING SOUND AT YOUR DOOR . . .", '"WOAH! What are you doing here, little guy?"', "You look upset. Do you want a snack?"],
+    background: ["img/door-close.png", "img/door-open.png"],
+    sprite: [null, "img/nightcrawler-sad.svg"],
     trigger: stage1
 };
 
 let afterFoodDialogue = {
     speaker: "You",
-    text: ["Text1", "Text2", "Text3"],
-    background: "outside.png",
-    sprite: "creature.png",
+    text: ["You look a lot better now that you've had a meal!", "Wish you didn't eat my pet fish, though. . .", "Now what do you want to do?"],
+    background: "img/food-bg.png",
+    sprite: "img/nightcrawler-happy.svg",
     trigger: stage2
 };
 
 let afterSoccerDialogue = {
     speaker: "You",
-    text: ["Text1", "Text2", "Text3"],
-    background: "livingroom.png",
-    sprite: "creature.png",
+    text: ["AFTER YOUR SOCCER GAME YOU HEAD BACK INSIDE", "Phew, that was a good game!", "Aww don't look so mad - Wait where are you going?!"],
+    background: ["img/soccer-bg.png", "img/door-open.png", "img/door-close.png"],
+    sprite: [null, "img/nightcrawler-angry.svg", "img/nightcrawler-angry.svg"],
     trigger: startStage3
 };
 
@@ -56,13 +56,16 @@ document.getElementById("startbtn").addEventListener("click", function () {
     document.getElementById("title").style.display = "none";
     document.getElementById("dialogue").style.display = "block";
     dialogueText.textContent = currentDialogue.text[currentLine];
-    console.log("yes")
+    console.log("yes");
+    drawDialogueScene();
 });
+
 
 document.getElementById("nextbtn").addEventListener("click", function () {
     currentLine += 1;
     if (currentLine < currentDialogue.text.length) {
         dialogueText.textContent = currentDialogue.text[currentLine];
+        drawDialogueScene();
     }
     else {
         if (currentDialogue.trigger) {
@@ -71,14 +74,84 @@ document.getElementById("nextbtn").addEventListener("click", function () {
     }
 });
 
+let dialogueBackground = new Image();
+let dialogueSprite = new Image();
+
+function drawDialogueScene() {
+
+    let bgSrc;
+    let spriteSrc;
+
+    // 1. Pick correct sources
+    if (Array.isArray(currentDialogue.background)) {
+        bgSrc = currentDialogue.background[currentLine];
+    } else {
+        bgSrc = currentDialogue.background;
+    }
+
+    if (Array.isArray(currentDialogue.sprite)) {
+        spriteSrc = currentDialogue.sprite[currentLine];
+    } else {
+        spriteSrc = currentDialogue.sprite;
+    }
+
+    // 2. Setup positions
+    let spriteX = canvas.width / 2 - 100;
+    let spriteY = canvas.height / 2;
+
+    let bgReady = false;
+    let spriteReady = false;
+
+    // 3. Load background
+    dialogueBackground.onload = function () {
+        bgReady = true;
+
+        if (spriteReady) {
+            draw();
+        }
+    };
+
+    dialogueBackground.src = bgSrc;
+
+    // 4. Load sprite ONLY if it exists
+    if (spriteSrc) {
+        dialogueSprite.onload = function () {
+            spriteReady = true;
+
+            if (bgReady) {
+                draw();
+            }
+        };
+
+        dialogueSprite.src = spriteSrc;
+    } else {
+        // No sprite this frame → treat as "ready"
+        spriteReady = true;
+    }
+
+    // 5. Draw function
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // draw background
+        ctx.drawImage(dialogueBackground, 0, 0, canvas.width, canvas.height);
+
+        // draw sprite ONLY if it exists
+        if (spriteSrc) {
+            ctx.drawImage(dialogueSprite, spriteX, spriteY, 200, 200);
+        }
+    }
+}
+
 function resumeVN(nextDialogue) {
     currentDialogue = nextDialogue;
     currentLine = 0;
 
-    document.getElementById("canvasBox").style.display = "none";
+    document.getElementById("canvasBox").style.display = "block";
     document.getElementById("dialogue").style.display = "block";
 
     dialogueText.textContent = currentDialogue.text[currentLine];
+    drawDialogueScene();
 }
 
 function gameOver() {

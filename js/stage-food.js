@@ -13,6 +13,8 @@ has an x and y coordinate, a width and height, a base png and a silhouette png.
 // GAME MENTOR
 let sprite = new Image();
 sprite.src = "img/nightcrawler-sad.svg";
+let background = new Image();
+background.src = "img/food-bg.png"
 
 let spriteHappy = new Image();
 spriteHappy.src = "img/nightcrawler-happy.svg";
@@ -123,8 +125,7 @@ function startRound() {
 }
 
 function drawStage1() {
-    ctx.fillStyle = '#9be1f2';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     fooditems.forEach(food => {
         ctx.drawImage(
@@ -137,7 +138,7 @@ function drawStage1() {
     });
 
     ctx.save();
-    spriteX = canvas.width / 2 - 200;
+    spriteX = canvas.width / 2 - 100;
     spriteY = canvas.height / 2 - 100;
     ctx.drawImage(currentSprite, spriteX, spriteY, 200, 200);
     if (showSilhouette) {

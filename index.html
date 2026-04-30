@@ -61,6 +61,35 @@
             <button id="startbtn" onclick="playClickSound()">START</button>
             <button id="creditsbtn" onclick="playClickSound()">CREDITS</button>
         </div>
+        <div id="credits">
+            <span id="backBtn" onclick="playClickSound()">
+                <svg fill="#26123a" width="25px" height="25px" viewBox="0 0 200 200" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" stroke="#26123a">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <title></title>
+                        <path d="M160,89.75H56l53-53a9.67,9.67,0,0,0,0-14,9.67,9.67,0,0,0-14,0l-56,56a30.18,30.18,0,0,0-8.5,18.5c0,1-.5,1.5-.5,2.5a6.34,6.34,0,0,0,.5,3,31.47,31.47,0,0,0,8.5,18.5l56,56a9.9,9.9,0,0,0,14-14l-52.5-53.5H160a10,10,0,0,0,0-20Z"></path>
+                    </g>
+                </svg>
+            </span>
+            <h3>CREATORS</h3>
+            <span class="creator">
+                <h4>VON MILLER</h4>
+                <p>VISUAL NOVEL, FOOD STAGE, AUDIO, CSS & UI</p>
+            </span>
+            <span class="creator">
+                <h4>TIFFANY SHIN</h4>
+            </span>
+            <span class="creator">
+                <h4>JAMIE MOULTON</h4>
+            </span>
+            <h3>AUDIO</h3>
+            <span class="creator">
+                <h4><a href="https://pixabay.com/users/retro-bgm-chan-55246343/" target="_blank">RETRO-BGM-CHAN | PIXABAY</a></h4>
+                <p>INTRO MUSIC: Convenience Store_こんびに</p>
+                <p>MAIN MUSIC: Stupid Enemy_まぬけけなてき</p>
+            </span>
+        </div>
         <!-- VISUAL NOVEL -->
         <div id="dialogue">
             <h3 id="name"></h3>
@@ -115,8 +144,19 @@
 
             introMusic.pause();
             introMusic.currentTime = 0;
-
         }
+
+        document.getElementById("creditsbtn").addEventListener("click", function () {
+            document.getElementById("title").style.display = "none";
+            document.getElementById("dialogue").style.display = "none";
+            document.getElementById("credits").style.display = "flex";
+        });
+
+        document.getElementById("backBtn").addEventListener("click", function () {
+            document.getElementById("title").style.display = "flex";
+            document.getElementById("credits").style.display = "none";
+        });
+
 
         // Make the DIV element draggable:
         dragElement(document.getElementById("gameBox"));
@@ -166,10 +206,21 @@
 
         const clickSound = new Audio("audio/click.mp3");
         const introMusic = new Audio("audio/intro-music.mp3");
+        const mainMusic = new Audio("audio/main-music.mp3");
 
         clickSound.volume = 0.5;
         introMusic.volume = 0.1;
         introMusic.loop = true; // keeps music looping
+        mainMusic.volume = 0.1;
+        mainMusic.loop = true;
+
+        let currentMusic = introMusic
+
+        document.getElementById("startbtn").addEventListener("click", function () {
+            currentMusic.pause();
+            currentMusic = mainMusic;
+            playMusic();
+        });
 
         function playClickSound() {
             clickSound.currentTime = 0;
@@ -180,14 +231,14 @@
             document.getElementById("volumePlay").style.display = "none";
             document.getElementById("volumeMute").style.display = "flex";
 
-            introMusic.play();
+            currentMusic.play();
         }
 
         function muteAudio() {
             document.getElementById("volumeMute").style.display = "none";
             document.getElementById("volumePlay").style.display = "flex";
 
-            introMusic.pause();
+            currentMusic.pause();
         }
 
     </script>

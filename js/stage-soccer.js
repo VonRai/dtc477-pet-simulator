@@ -12,22 +12,26 @@ Lose the match → game over
 //3. When the ball goes past a paddle, the opposing side earns 1 point. 
 //4. After each score, the ball gets slightly faster. 
 //5. Game ends when a side earns 5 points.
-// GAME MENTOR LINK
-
+// GAME MENTOR 
 
 // GAME MENTOR
 
 function stage2() {
-    resumeVN(afterSoccerDialogue);
-
-const canvas = document.getElementById('pongCanvas');
+    resumeVN(afterSoccerDialogue);}
+const canvas = document.getElementById('canvasBox');
 const context = canvas.getContext('2d');
 const grid = 15;
 const paddleHeight = grid * 5; // 80
 const maxPaddleY = canvas.height - grid - paddleHeight;
 
-var paddleSpeed = 6;
-var ballSpeed = 5;
+let paddleSpeed = 6;
+let aiSpeed = 1;
+let ballSpeed = 2;
+let ballSpeedMultiplier = 1;
+let playerScore = 0;
+let computerScore = 0;
+let gameOver = false;
+
 
 const leftPaddle = {
   // start in the middle of the game on the left side
@@ -73,14 +77,71 @@ function collides(obj1, obj2) {
          obj1.y + obj1.height > obj2.y;
 }
 
+function resetBall() {
+  ball.resetting = true;
+
+  setTimeout(() => {
+    ball.x = canvas.width / 2;
+    ball.y = canvas.height / 2;
+
+    // increase speed slightly each score
+    ballSpeedMultiplier += 0.1;
+
+    // random direction + scaling
+    ball.dx = ballSpeed * ballSpeedMultiplier * (Math.random() > 0.5 ? 1 : -1);
+    ball.dy = ballSpeed * ballSpeedMultiplier * (Math.random() > 0.5 ? 1 : -1);
+
+    ball.resetting = false;
+  }, 400);
+}
+
 // game loop
 function loop() {
+    
   requestAnimationFrame(loop);
   context.clearRect(0,0,canvas.width,canvas.height);
 
-  // move paddles by their velocity
+   if (gameOver) {
+    context.fillStyle = 'white';
+    context.font = '30px Arial';
+    context.textAlign = 'center';
+
+    let winner = playerScore >= 5 ? "You Win!" : "The NightCrawler Wins!";
+
+    context.fillText(winner, canvas.width / 2, canvas.height / 2);
+
+    
+
+    return;
+  }
+  context.fillStyle = 'white';
+context.font = '20px Arial';
+
+// computer score (left side)
+context.fillText(computerScore, canvas.width / 4, 30);
+
+// player score (right side)
+context.fillText(playerScore, canvas.width * 3 / 4, 30);
+  
+      // move paddles by their velocity
+
+let targetY = ball.y;
+
+let diff = targetY - leftPaddle.y;
+
+if (Math.abs(diff) > 5) {
+  if (diff < 0) {
+    leftPaddle.dy = -aiSpeed;
+  } else {
+    leftPaddle.dy = aiSpeed;
+  }
+} else {
+  leftPaddle.dy = 0;
+}
+  
+
   leftPaddle.y += leftPaddle.dy;
-  rightPaddle.y += rightPaddle.dy;
+    rightPaddle.y += rightPaddle.dy;
 
   // prevent paddles from going through walls
   if (leftPaddle.y < grid) {
@@ -116,17 +177,19 @@ function loop() {
     ball.dy *= -1;
   }
 
-  // reset ball if it goes past paddle (but only if we haven't already done so)
-  if ( (ball.x < 0 || ball.x > canvas.width) && !ball.resetting) {
-    ball.resetting = true;
 
-    // give some time for the player to recover before launching the ball again
-    setTimeout(() => {
-      ball.resetting = false;
-      ball.x = canvas.width / 2;
-      ball.y = canvas.height / 2;
-    }, 400);
-  }
+  if (ball.x < 0 && !ball.resetting) {
+  playerScore++;
+  resetBall();
+}
+
+if (ball.x > canvas.width && !ball.resetting) {
+  computerScore++;
+  resetBall();
+}
+    if (playerScore >= 5 || computerScore >= 5) {
+  gameOver = true;
+}
 
   // check to see if ball collides with paddle. if they do change x velocity
   if (collides(ball, leftPaddle)) {
@@ -170,14 +233,6 @@ document.addEventListener('keydown', function(e) {
     rightPaddle.dy = paddleSpeed;
   }
 
-  // w key
-  if (e.which === 87) {
-    leftPaddle.dy = -paddleSpeed;
-  }
-  // a key
-  else if (e.which === 83) {
-    leftPaddle.dy = paddleSpeed;
-  }
 });
 
 // listen to keyboard events to stop the paddle if key is released
@@ -186,11 +241,9 @@ document.addEventListener('keyup', function(e) {
     rightPaddle.dy = 0;
   }
 
-  if (e.which === 83 || e.which === 87) {
-    leftPaddle.dy = 0;
-  }
-});
+ });
+
 
 // start the game
 requestAnimationFrame(loop);
-};
+

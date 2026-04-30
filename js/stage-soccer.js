@@ -19,7 +19,8 @@ Lose the match → game over
 function stage2() {
   resumeVN(afterSoccerDialogue);
 }
-const canvas = document.getElementById('canvasBox');
+
+/*const canvas = document.getElementById('canvasBox');
 const context = canvas.getContext('2d');
 const grid = 15;
 const paddleHeight = grid * 5; // 80
@@ -246,5 +247,4 @@ document.addEventListener('keyup', function (e) {
 
 
 // start the game
-requestAnimationFrame(loop);
-
+requestAnimationFrame(loop); */

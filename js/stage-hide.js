@@ -11,75 +11,76 @@ let lampOpen = document.getElementById("lamp");
 let safeOpen = document.getElementById("safe");
 let carpetOpen = document.getElementById("carpet");
 let livingRoom = document.getElementById("living-room");
+let drawerLayer = document.getElementById("drawer-layer");
 
 let gameState = "playing";
 
 // OBJECTS
 const cushion = {
-    xClosed: 70,
-    yClosed: 190,
+    xClosed: 95,
+    yClosed: 255,
+    
+    xOpen: 75,
+    yOpen: 200,
 
-    xOpen: 60,
-    yOpen: 150,
-
-    width: 130,
-    height: 140,
+    width: 100,
+    height: 80,
 
     isOpen: false,
     win: false
 };
 
 const drawer = {
-    xClosed: 490,
-    yClosed: 180,
+    xClosed: 476,
+    yClosed: 210,
 
-    xOpen: 430,
-    yOpen: 180,
+    xOpen: 445,
+    yOpen: 210,
 
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
 
     isOpen: false,
     win: false
 };
 
 const lampshade = {
-    xClosed: 110,
-    yClosed: 110,
+    xClosed: 120,
+    yClosed: 115,
 
     xOpen: 100,
     yOpen: 70,
 
-    width: 100,
-    height: 100,
+    width: 75,
+    height: 75,
 
     isOpen: false,
     win: true
 };
 
 const safe = {
-    xClosed: 190,
-    yClosed: 0,
+    xClosed: 200,
+    yClosed: 10,
 
-    xOpen: 190,
-    yOpen: 0,
+    xOpen: 90,
+    yOpen: -10,
 
-    width: 230,
-    height: 120,
+    width: 210,
+    height: 100,
 
     isOpen: false,
     win: false
 }
 
 const carpet = {
-    xClosed: 250,
-    yClosed: 200,
+    xClosed: 230,
+    yClosed: 210,
 
-    xOpen: 250,
-    yOpen: 200,
+    xOpen: 230,
+    yOpen: 270,
 
     width: 200,
-    height: 250,
+    height: 220,
 
     isOpen: false,
     win: false
@@ -225,6 +226,8 @@ function stage3(timestamp) {
 
     ctx.fillStyle = "purple";
     ctx.drawImage(carpetOpen, drawX, drawY, carpet.width, carpet.height);
+
+    ctx.drawImage(drawerLayer, 0, 0, 600, 450);
 
     requestAnimationFrame(stage3);
 

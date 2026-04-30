@@ -22,6 +22,25 @@ h2 {
     margin: 0.5em 0 0.5 0;
 }
 
+#gameLaunch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    cursor: pointer;
+}
+
+#gameLaunch p {
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+
 #dragBar {
     background-color: #904899;
     height: 30px;
@@ -30,22 +49,35 @@ h2 {
     display: flex;
     align-items: center;
     text-align: left;
-    cursor: move;
     z-index: 999;
     border: 4px solid #26123a;
     position: absolute;
     top: -35px;
     cursor: grab;
-
+    justify-content: space-between;
 }
 
 #dragBar span {
+    align-self: center;
     margin-left: 0.5em;
+    margin-right: 0.5em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 20px;
+}
+
+#dragUI {
+    cursor: pointer;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#volumeMute {
+    display: none;
 }
 
 #gameBox {
-    display: flex;
+    display: none;
     margin: auto;
     flex-direction: column;
     text-align: center;
@@ -92,6 +124,7 @@ button {
     box-shadow: 3px 3px rgb(83, 30, 88);
     font-weight: 600;
     z-index: 999;
+    cursor: pointer;
 }
 
 button:hover {

@@ -12,7 +12,14 @@ has an x and y coordinate, a width and height, a base png and a silhouette png.
 // DEVELOPER: VON MILLER
 // GAME MENTOR
 let sprite = new Image();
-sprite.src = "img/creature.jpg";
+sprite.src = "img/nightcrawler-sad.svg";
+
+let spriteHappy = new Image();
+spriteHappy.src = "img/nightcrawler-happy.svg";
+
+let currentSprite = sprite;
+
+
 let spriteX
 let spriteY
 let roundsWon = 0;
@@ -24,9 +31,9 @@ let silhouetteImage = new Image();
 
 // Y1 is for silhouettes, Y2 is for the interactive option.
 let fooditems = [
-    { image: 'img/food1.jpg', silhouette: 'img/food1-silhouette.jpg', x: 150, y: 350, width: 80, height: 80, name: 'Apple' },
-    { image: 'img/food2.jpg', silhouette: 'img/food2-silhouette.jpg', x: 250, y: 350, width: 80, height: 80, name: 'Cheese' },
-    { image: 'img/food3.jpg', silhouette: 'img/food3-silhouette.jpg', x: 350, y: 350, width: 80, height: 80, name: 'Fish' },
+    { image: 'img/food1.svg', silhouette: 'img/food1-silhouette.svg', x: 150, y: 350, width: 80, height: 80, name: 'Apple' },
+    { image: 'img/food2.svg', silhouette: 'img/food2-silhouette.svg', x: 250, y: 350, width: 80, height: 80, name: 'Cheese' },
+    { image: 'img/food3.svg', silhouette: 'img/food3-silhouette.svg', x: 350, y: 350, width: 80, height: 80, name: 'Fish' },
 ];
 
 fooditems.forEach(food => {
@@ -53,11 +60,18 @@ canvas.addEventListener("click", function (event) {
 
                 roundsWon++;
 
-                if (roundsWon < 5) {
-                    startRound();
-                } else {
-                    resumeVN(afterFoodDialogue);
-                }
+                currentSprite = spriteHappy;
+                drawStage1();
+
+                setTimeout(function () {
+                    currentSprite = sprite;
+
+                    if (roundsWon < 5) {
+                        startRound();
+                    } else {
+                        resumeVN(afterFoodDialogue);
+                    }
+                }, 2000);
 
             } else {
                 gameOver();
@@ -125,9 +139,9 @@ function drawStage1() {
     ctx.save();
     spriteX = canvas.width / 2 - 200;
     spriteY = canvas.height / 2 - 100;
-    ctx.drawImage(sprite, spriteX, spriteY, 200, 200);
+    ctx.drawImage(currentSprite, spriteX, spriteY, 200, 200);
     if (showSilhouette) {
-        ctx.drawImage(silhouetteImage, spriteX, spriteY - 100, 80, 80);
+        ctx.drawImage(silhouetteImage, spriteX, spriteY - 100, 120, 120);
     }
     ctx.restore();
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="food2" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 57.11 64.32">
+  <!-- Generator: Adobe Illustrator 30.0.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 123)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: url(#linear-gradient1);
+      }
+
+      .st1 {
+        fill: none;
+      }
+
+      .st1, .st2 {
+        stroke: #f15a24;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .st2 {
+        fill: #f7a11e;
+      }
+
+      .st3 {
+        fill: #f15a24;
+      }
+
+      .st4 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="11.74" y1="89.25" x2="11.74" y2="-33.47" gradientUnits="userSpaceOnUse">
+      <stop offset=".45" stop-color="#f15a24"/>
+      <stop offset=".53" stop-color="#f76f1b"/>
+      <stop offset=".59" stop-color="#fb7d17"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" x1="37.65" y1="58.34" x2="37.65" y2="42.82" gradientTransform="translate(73.59 -1.23) rotate(71.41)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f15a24"/>
+      <stop offset="1" stop-color="#fb7d17"/>
+    </linearGradient>
+  </defs>
+  <path class="st2" d="M56.11,31.5v-11.56l-14.61-8.85c-.33.02-.66.03-.99.03-5.67,0-10.27-2.51-10.27-5.6,0-.38.07-.76.21-1.12l-5.52-3.34L1,5.02v41.76l7.55,2.22c1.15-2.86,3.96-4.89,7.23-4.89,4.31,0,7.8,3.49,7.8,7.8,0,.5-.05.99-.14,1.46l32.67,9.6v-15.65c-3.18-1.12-5.47-4.24-5.47-7.91s2.29-6.79,5.47-7.91Z"/>
+  <line class="st1" x1=".69" y1="6.09" x2="56.42" y2="22.11"/>
+  <path class="st3" d="M25.86,13.21c-.71,4.49,1.81,8.85,6.04,10.06,4.23,1.21,8.67-1.14,10.46-5.32l-16.5-4.74Z"/>
+  <ellipse class="st4" cx="11.74" cy="27.71" rx="6.8" ry="7.8"/>
+  <ellipse class="st0" cx="37.65" cy="50.58" rx="7.8" ry="7.4" transform="translate(-22.29 70.14) rotate(-71.41)"/>
+  <path class="st3" d="M14.05,1.75c1.11,2.57,3.42,4.34,6.09,4.34s4.98-1.77,6.09-4.34h-12.18Z"/>
+</svg>

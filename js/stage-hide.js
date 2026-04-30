@@ -14,6 +14,9 @@ let livingRoom = document.getElementById("living-room");
 let drawerLayer = document.getElementById("drawer-layer");
 
 let gameState = "playing";
+//let canClick = false;
+let timer = 10;
+let endTime = 0;
 
 // OBJECTS
 const cushion = {
@@ -90,6 +93,7 @@ const objects = [cushion, drawer, lampshade, safe, carpet];
 
 // INTERACTION
 canvas.addEventListener("click", (e) => {
+    
     if (gameState !== "playing") {
         console.log("win");
         return;
@@ -133,10 +137,9 @@ canvas.addEventListener("click", (e) => {
 function startStage3() {
     document.getElementById("dialogue").style.display = "none";
     document.getElementById("canvasBox").style.display = "block";
-
-    gameState = "playing";
-
-    requestAnimationFrame(stage3);
+    
+    stage3();
+    //requestAnimationFrame(stage3);
 }
 
 
@@ -146,8 +149,7 @@ function stage3(timestamp) {
     ctx.drawImage(livingRoom, 0, 0, 600, 450);
 
     // TIMER
-    let timer = 10;
-    let endTime = 0;
+    
     let deltaTime = (timestamp - endTime) / 1000;
     endTime = timestamp;
 

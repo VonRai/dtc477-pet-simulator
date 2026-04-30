@@ -11,6 +11,7 @@ let lampOpen = document.getElementById("lamp");
 let safeOpen = document.getElementById("safe");
 let carpetOpen = document.getElementById("carpet");
 let livingRoom = document.getElementById("living-room");
+let drawerLayer = document.getElementById("drawer-layer");
 
 let gameState = "playing";
 
@@ -225,6 +226,8 @@ function stage3(timestamp) {
 
     ctx.fillStyle = "purple";
     ctx.drawImage(carpetOpen, drawX, drawY, carpet.width, carpet.height);
+
+    ctx.drawImage(drawerLayer, 0, 0, 600, 450);
 
     requestAnimationFrame(stage3);
 

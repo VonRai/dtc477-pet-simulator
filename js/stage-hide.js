@@ -13,10 +13,8 @@ let carpetOpen = document.getElementById("carpet");
 let livingRoom = document.getElementById("living-room");
 let drawerLayer = document.getElementById("drawer-layer");
 
-let gameState = "playing";
-//let canClick = false;
-let timer = 10;
-let endTime = 0;
+let gameState = null;
+let startTime = null;
 
 // OBJECTS
 const cushion = {
@@ -125,7 +123,8 @@ canvas.addEventListener("click", (e) => {
 
             if (obj.win === true && obj.isOpen === false) {
                 gameState = "win";
-                console.log("working");
+                console.log(gameState);
+                resumeVN(endDialogue);
             }
 
             obj.isOpen = !obj.isOpen;
@@ -137,9 +136,12 @@ canvas.addEventListener("click", (e) => {
 function startStage3() {
     document.getElementById("dialogue").style.display = "none";
     document.getElementById("canvasBox").style.display = "block";
+
+    gameState = "playing";
+
+    startTime = performance.now();
     
-    stage3();
-    //requestAnimationFrame(stage3);
+    requestAnimationFrame(stage3);
 }
 
 
@@ -149,25 +151,21 @@ function stage3(timestamp) {
     ctx.drawImage(livingRoom, 0, 0, 600, 450);
 
     // TIMER
-    
-    let deltaTime = (timestamp - endTime) / 1000;
-    endTime = timestamp;
+    let elapsed = (timestamp - startTime) / 1000;
+    let timeLeft = 10 - elapsed;
 
     if (gameState === "playing") {
-        timer -= deltaTime;
+        // DISPLAY TIMER
+        timerDisplay.style.display = "block";
+        timerDisplay.innerHTML = `${timeLeft.toFixed(1)}`;
 
-        if (timer <= 0) {
+        if (timeLeft <= 0) {
             gameState = "lose";
-            timer = 0;
-            console.log("lose");
-            return;
+            timeLeft = 0;
+            console.log(gameState);
+            gameOver();
         }
     }
-
-    ctx.fillStyle = "white";
-    ctx.font = "20px sans-serif";
-    ctx.fillText("Time: " + timer.toFixed(1), 10, 20);
-
 
     // OBJECT INTERACTION
     let drawX;
@@ -181,7 +179,6 @@ function stage3(timestamp) {
         drawY = cushion.yClosed;
     }
 
-    ctx.fillStyle = "blue";
     ctx.drawImage(couchOpen, drawX, drawY, cushion.width, cushion.height);
 
     if (drawer.isOpen) {
@@ -192,9 +189,7 @@ function stage3(timestamp) {
         drawY = drawer.yClosed;
     }
 
-    ctx.fillStyle = "red";
     ctx.drawImage(drawerOpen, drawX, drawY, drawer.width, drawer.height);
-
 
     if (lampshade.isOpen) {
         drawX = lampshade.xOpen;
@@ -204,7 +199,6 @@ function stage3(timestamp) {
         drawY = lampshade.yClosed;
     }
 
-    ctx.fillStyle = "yellow";
     ctx.drawImage(lampOpen, drawX, drawY, lampshade.width, lampshade.height);
 
     if (safe.isOpen) {
@@ -215,7 +209,6 @@ function stage3(timestamp) {
         drawY = safe.yClosed;
     }
 
-    ctx.fillStyle = "green";
     ctx.drawImage(safeOpen, drawX, drawY, safe.width, safe.height);
 
     if (carpet.isOpen) {
@@ -226,13 +219,11 @@ function stage3(timestamp) {
         drawY = carpet.yClosed;
     }
 
-    ctx.fillStyle = "purple";
     ctx.drawImage(carpetOpen, drawX, drawY, carpet.width, carpet.height);
 
     ctx.drawImage(drawerLayer, 0, 0, 600, 450);
 
     requestAnimationFrame(stage3);
-
 }
 
-//stage3();
+//startStage3();

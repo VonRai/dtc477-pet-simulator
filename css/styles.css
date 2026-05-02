@@ -166,6 +166,15 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-shadow: 10px 10px rgb(83, 30, 88);
 }
 
+#timer {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    font-family: "Aclonica", sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+}
+
 .hide {
     display: none;
 }

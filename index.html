@@ -98,6 +98,7 @@
         </div>
         <!-- CANVAS LAYER -->
         <div id="canvasBox">
+            <div id="timer"></div>
             <canvas id="canvas" width="600" height="450"></canvas>
         </div>
     </div>
@@ -132,6 +133,9 @@
     <script>
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext('2d');
+
+        let timerDisplay = document.getElementById("timer");
+        timerDisplay.style.display = "none";
 
         function openGame() {
             document.getElementById("gameBox").style.display = "flex";

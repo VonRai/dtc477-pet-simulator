@@ -15,13 +15,19 @@ Lose the match → game over
 // GAME MENTOR 
 
 // GAME MENTOR
+//https://chatgpt.com/share/69f3ea18-6b54-83e8-aba0-3bf2343888a5
+//https://chatgpt.com/share/69f3ea3c-a17c-83e8-9358-63ea2db2fbe3
 
 function stage2() {
-  resumeVN(afterSoccerDialogue);
+  isSoccerRunning = true;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  document.getElementById("dialogue").style.display = "none";
+  document.getElementById("canvasBox").style.display = "block";
+  requestAnimationFrame(loop); 
 }
 
-/*const canvas = document.getElementById('canvasBox');
-const context = canvas.getContext('2d');
+canvas = document.getElementById('canvas');
+context = canvas.getContext('2d');
 const grid = 15;
 const paddleHeight = grid * 5; // 80
 const maxPaddleY = canvas.height - grid - paddleHeight;
@@ -32,7 +38,12 @@ let ballSpeed = 2;
 let ballSpeedMultiplier = 1;
 let playerScore = 0;
 let computerScore = 0;
-let gameOver = false;
+let gameDone = false;
+let endStage2 = false;
+const soccerBackground = new Image();
+soccerBackground.src = "img/soccer-bg.png";
+let isSoccerRunning = false;
+
 
 
 const leftPaddle = {
@@ -100,10 +111,14 @@ function resetBall() {
 // game loop
 function loop() {
 
+  if (!isSoccerRunning) return;
   requestAnimationFrame(loop);
   context.clearRect(0, 0, canvas.width, canvas.height);
+  context.drawImage(soccerBackground, 0, 0, canvas.width, canvas.height);
 
-  if (gameOver) {
+
+  if (gameDone) {
+    isSoccerRunning = false;
     context.fillStyle = 'white';
     context.font = '30px Arial';
     context.textAlign = 'center';
@@ -112,12 +127,16 @@ function loop() {
 
     context.fillText(winner, canvas.width / 2, canvas.height / 2);
 
-
+    if (!endStage2) {
+    resumeVN(afterSoccerDialogue);
+    endStage2 = true;
+  }
 
     return;
   }
   context.fillStyle = 'white';
   context.font = '20px Arial';
+
 
   // computer score (left side)
   context.fillText(computerScore, canvas.width / 4, 30);
@@ -190,7 +209,7 @@ function loop() {
     resetBall();
   }
   if (playerScore >= 5 || computerScore >= 5) {
-    gameOver = true;
+    gameDone = true;
   }
 
   // check to see if ball collides with paddle. if they do change x velocity
@@ -246,5 +265,4 @@ document.addEventListener('keyup', function (e) {
 });
 
 
-// start the game
-requestAnimationFrame(loop); */
+

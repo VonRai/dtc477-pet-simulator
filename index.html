@@ -14,9 +14,14 @@
 
 <body>
     <!-- TITLE SCREEN -->
-    <div id="gameLaunch" onclick="openGame()">
+    <div id="gameLaunch" onclick="Load()">
         <img src="img/favicon.png" alt="Pixel art favicon of the Night Crawler">
         <p>NIGHT_ENCOUNTER.EXE</p>
+    </div>
+
+    <div id="gameLoad">
+        <p>Loading...</p>
+        <div class="loader"></div>
     </div>
 
     <div id="gameBox">
@@ -137,14 +142,27 @@
         let timerDisplay = document.getElementById("timer");
         timerDisplay.style.display = "none";
 
-        function openGame() {
-            document.getElementById("gameBox").style.display = "flex";
+        let gameLoad = document.getElementById("gameLoad");
+        let gameBox = document.getElementById("gameBox");
 
+
+        function Load() {
+            if (getComputedStyle(gameBox).display === "none") {
+                gameLoad.style.display = "flex";
+                const loadTime = setTimeout(openGame, 2000);
+            } else {
+                return;
+            }
+        }
+
+        function openGame() {
+            gameLoad.style.display = "none";
+            gameBox.style.display = "flex";
             playMusic();
         }
 
         function closeGame() {
-            document.getElementById("gameBox").style.display = "none";
+            gameBox.style.display = "none";
 
             introMusic.pause();
             introMusic.currentTime = 0;

@@ -6,13 +6,48 @@ In our game, the Fresno Nightcrawler appears at your front door. You invite it i
 
 Will you befriend the creature, or become its next meal?
 
+## Game Overview
+
+Night Encounter is a visual novel point-and-click game where players welcome a mysterious Nightcrawler into their home and must care for it, or face the consequences. Will you befriend the creature or become its next meal?
+
+Intended for a young audience that enjoys interactive storytelling and a spooky atmosphere.
+
+Playtime: Approximately 5-10 minutes
+
+---
+
+## Instructions
+
+Click the start button to begin. Click the about button for more information
+on the creation of the game.
+
+Once you enter the game, click the next button to proceed through the story.
+
+### Stage 1
+
+In this stage, you will feed the Nightcrawler its favorite foods!
+Wait for the thought bubble to appear, and click the matching food item to feed it.
+But be careful! If you click the wrong food item, the Nightcrawler might get upset.
+
+### Stage 2 
+In this stage, you will play a game of soccer with the Nightcrawler!
+Use the arrow keys to move up and down the screen, and try to hit the ball past the Nightcrawler.
+                
+If the ball hits the left side of the screen, you will score a point. If it hits the right side, the Nightcrawler will score.
+Try and make it to 5 points to proceed to the next stage!
+
+### Stage 3
+In this stage, you will play hide and seek with the Nightcrawler!
+Quickly click around the screen to find the Nightcrawler.
+Try and find it before the time runs out!
+
 ---
 
 ## Team & Roles
 
 * **Tiffany** – Background design
 * **Jamie** – Character + asset illustrations
-* **Von** – JavaScript, CSS, game logic
+* **Von** – JavaScript, CSS, Game Logic, Visual Novel, Stage 1
 
 ---
 

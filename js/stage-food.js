@@ -10,7 +10,11 @@ has an x and y coordinate, a width and height, a base png and a silhouette png.
 */
 
 // DEVELOPER: VON MILLER
-// GAME MENTOR
+/* GAME MENTOR LOGS
+1. https://chatgpt.com/share/69f8c641-4200-83e8-97c1-0be755128efd
+2. https://chatgpt.com/share/69f8c657-0cac-83e8-9e43-5f226c78b6ad
+*/
+
 let sprite = new Image();
 sprite.src = "img/nightcrawler-sad.svg";
 let background = new Image();
@@ -21,7 +25,6 @@ spriteHappy.src = "img/nightcrawler-happy.svg";
 
 let currentSprite = sprite;
 
-
 let spriteX
 let spriteY
 let roundsWon = 0;
@@ -29,6 +32,7 @@ let silhouetteTime = 3000;
 let showSilhouette = true;
 let correctFood = null;
 let silhouetteImage = new Image();
+
 
 // Y1 is for silhouettes, Y2 is for the interactive option.
 let fooditems = [
@@ -44,6 +48,9 @@ fooditems.forEach(food => {
 
 
 canvas.addEventListener("click", function (event) {
+
+    
+    if (gameLocked) return;
 
     let mouseX = event.offsetX;
     let mouseY = event.offsetY;
@@ -75,6 +82,7 @@ canvas.addEventListener("click", function (event) {
 
             } else {
                 gameOver();
+                return;
             }
         }
     });
@@ -115,12 +123,17 @@ function startRound() {
 
     // hide silhouette after timer ends
     setTimeout(function () {
-        showSilhouette = false;
-        drawStage1();
-    }, silhouetteTime);
+
+    if (gameLocked) return;
+
+    showSilhouette = false;
+    drawStage1();
+
+}, silhouetteTime);
 }
 
 function drawStage1() {
+    if (gameLocked) return;
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     fooditems.forEach(food => {

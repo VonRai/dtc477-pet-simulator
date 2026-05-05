@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Aclonica&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <title>NIGHT ENCOUNTER</title>
 </head>
+
+<!-- DTC 477, Spring 2026 | Von Miller, Tiffany Shin, Jamie Moulton -->
 
 <body>
     <!-- TITLE SCREEN -->
@@ -21,29 +21,30 @@
         <p>NIGHT_ENCOUNTER.EXE</p>
     </div>
 
+    <!-- LOADING SCREEN -->
     <div id="gameLoad">
         <p>Loading...</p>
         <div class="loader"></div>
     </div>
 
+    <!-- GAME QUIT PROMPT -->
     <div id="gameQuit">
         <p>Are you sure you want to quit?</p>
         <button onclick="confirmQuit()">YES</button>
         <button onclick="cancelQuit()">NO</button>
     </div>
 
+    <!-- GAME INSTRUCTIONS OVERLAY-->
     <div id="helpBox">
         <div id="dragBar2">
             <span>Help</span>
             <div id="dragUI">
                 <span id="quit" onclick="quitHelp()">
-                    <svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
-                        fill="#ffffff">
+                    <svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
-                            <path fill="#ffffff"
-                                d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z">
+                            <path fill="#ffffff" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z">
                             </path>
                         </g>
                     </svg>
@@ -82,81 +83,73 @@
         </div>
     </div>
 
+    <!-- MAIN GAME CONTAINER-->
     <div id="gameBox">
+                    <!-- TAB UI-->
                     <div id="dragBar1">
                         <span>Night Encounter</span>
                         <div id="dragUI">
                             <span id="help" onclick="openHelp()">
-                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
-                                        <path
-                                            d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM7.92 9.234v.102a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-1.29.998-1.979 2.34-1.979 1.308 0 2.168.689 2.168 1.67 0 .928-.482 1.359-1.686 1.91l-.344.154C11.379 11.54 11 12.21 11 13.381v.119a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-.516.138-.723.55-.912l.345-.155c1.445-.654 2.529-1.514 2.529-3.39v-.103c0-1.978-1.72-3.441-4.164-3.441-2.478 0-4.336 1.428-4.336 3.734zm2.58 7.757c0 .867.659 1.509 1.491 1.509.85 0 1.509-.642 1.509-1.509 0-.867-.659-1.491-1.509-1.491-.832 0-1.491.624-1.491 1.491z"
-                                            fill="#ffffff"></path>
+                                        <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM7.92 9.234v.102a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-1.29.998-1.979 2.34-1.979 1.308 0 2.168.689 2.168 1.67 0 .928-.482 1.359-1.686 1.91l-.344.154C11.379 11.54 11 12.21 11 13.381v.119a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-.516.138-.723.55-.912l.345-.155c1.445-.654 2.529-1.514 2.529-3.39v-.103c0-1.978-1.72-3.441-4.164-3.441-2.478 0-4.336 1.428-4.336 3.734zm2.58 7.757c0 .867.659 1.509 1.491 1.509.85 0 1.509-.642 1.509-1.509 0-.867-.659-1.491-1.509-1.491-.832 0-1.491.624-1.491 1.491z" fill="#ffffff"></path>
                                     </g>
                                 </svg>
                             </span>
                             <span id="volumeMute" onclick="muteAudio()">
-                                <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
                                         <path d="M6 1H8V15H6L2 11H0V5H2L6 1Z" fill="#ffffff"></path>
-                                        <path
-                                            d="M14 8C14 5.79086 12.2091 4 10 4V2C13.3137 2 16 4.68629 16 8C16 11.3137 13.3137 14 10 14V12C12.2091 12 14 10.2091 14 8Z"
-                                            fill="#ffffff"></path>
-                                        <path d="M12 8C12 9.10457 11.1046 10 10 10V6C11.1046 6 12 6.89543 12 8Z"
-                                            fill="#ffffff">
+                                        <path d="M14 8C14 5.79086 12.2091 4 10 4V2C13.3137 2 16 4.68629 16 8C16 11.3137 13.3137 14 10 14V12C12.2091 12 14 10.2091 14 8Z" fill="#ffffff"></path>
+                                        <path d="M12 8C12 9.10457 11.1046 10 10 10V6C11.1046 6 12 6.89543 12 8Z" fill="#ffffff">
                                         </path>
                                     </g>
                                 </svg>
                             </span>
                             <span id="volumePlay" onclick="playMusic()">
-                                <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
                                         <path d="M8 1H6L2 5H0V11H2L6 15H8V1Z" fill="#ffffff"></path>
-                                        <path
-                                            d="M9.29289 6.20711L11.0858 8L9.29289 9.79289L10.7071 11.2071L12.5 9.41421L14.2929 11.2071L15.7071 9.79289L13.9142 8L15.7071 6.20711L14.2929 4.79289L12.5 6.58579L10.7071 4.79289L9.29289 6.20711Z"
-                                            fill="#ffffff"></path>
+                                        <path d="M9.29289 6.20711L11.0858 8L9.29289 9.79289L10.7071 11.2071L12.5 9.41421L14.2929 11.2071L15.7071 9.79289L13.9142 8L15.7071 6.20711L14.2929 4.79289L12.5 6.58579L10.7071 4.79289L9.29289 6.20711Z" fill="#ffffff"></path>
                                     </g>
                                 </svg>
                             </span>
                             <span id="quit" onclick="openQuit()">
-                                <svg width="20px" height="20px" viewBox="0 0 1024 1024"
-                                    xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                                <svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
-                                        <path fill="#ffffff"
-                                            d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z">
+                                        <path fill="#ffffff" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z">
                                         </path>
                                     </g>
                                 </svg>
                             </span>
                         </div>
                     </div>
+
+                    <!-- INTRO PAGE -->
                     <div id="title">
                         <h1>NIGHT ENCOUNTER</h1>
                         <h2>WILL THEY CRAWL INTO YOUR HEART?</h2>
                         <button id="startbtn" onclick="playClickSound()">START</button>
                         <button id="creditsbtn" onclick="playClickSound()">CREDITS</button>
                     </div>
+
+                    <!-- ABOUT PAGE -->
                     <div id="credits">
                         <span id="backBtn" onclick="playClickSound()">
-                            <svg fill="#26123a" width="25px" height="25px" viewBox="0 0 200 200" data-name="Layer 1"
-                                id="Layer_1" xmlns="http://www.w3.org/2000/svg" stroke="#26123a">
+                            <svg fill="#26123a" width="25px" height="25px" viewBox="0 0 200 200" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" stroke="#26123a">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                 <g id="SVGRepo_iconCarrier">
                                     <title></title>
-                                    <path
-                                        d="M160,89.75H56l53-53a9.67,9.67,0,0,0,0-14,9.67,9.67,0,0,0-14,0l-56,56a30.18,30.18,0,0,0-8.5,18.5c0,1-.5,1.5-.5,2.5a6.34,6.34,0,0,0,.5,3,31.47,31.47,0,0,0,8.5,18.5l56,56a9.9,9.9,0,0,0,14-14l-52.5-53.5H160a10,10,0,0,0,0-20Z">
+                                    <path d="M160,89.75H56l53-53a9.67,9.67,0,0,0,0-14,9.67,9.67,0,0,0-14,0l-56,56a30.18,30.18,0,0,0-8.5,18.5c0,1-.5,1.5-.5,2.5a6.34,6.34,0,0,0,.5,3,31.47,31.47,0,0,0,8.5,18.5l56,56a9.9,9.9,0,0,0,14-14l-52.5-53.5H160a10,10,0,0,0,0-20Z">
                                     </path>
                                 </g>
                             </svg>
@@ -164,8 +157,8 @@
                         <div id="creditsContent">
                             <h2>ABOUT THE GAME</h2>
                             <p>Night Encounter is a visual novel point-and-click game where players welcome a mysterious Nightcrawler into their home and must care for it, or face the consequences. Will you befriend the creature or become its next meal?</p>
-                            <p>Intended for a young audience that enjoys interactive storytelling and a spooky atmosphere.</p>
-                            <p>Playtime: Approximately 5-10 minutes</p>
+                            <p><span class="gameInfo">Intended for a young audience that enjoys interactive storytelling and a spooky atmosphere.</span></p>
+                            <p><span class="gameInfo">Playtime: Approximately 5-10 minutes</span></p>
                             <h3>WHAT IS A NIGHTCRAWLER?</h3>
                             <p>The Nightcrawler is a cryptid first sited in Fresno, California in 2007. The unidentified creature has been identified as having long legs and no arms - Like a pair of walking pants!</p>
                             <p>As most cryptids, the Nightcrawler remains largely mysterious, with sightings reported in various locations across the United States.</p>
@@ -197,12 +190,16 @@
                             </span>
                             <h3>AUDIO</h3>
                             <span class="creator">
-                                <h4><a href="https://pixabay.com/users/retro-bgm-chan-55246343/"
-                                        target="_blank">RETRO-BGM-CHAN |
+                                <h4><a href="https://pixabay.com/users/retro-bgm-chan-55246343/" target="_blank">RETRO-BGM-CHAN |
                                         PIXABAY</a></h4>
                                 <p>INTRO MUSIC: Convenience Store_こんびに</p>
                                 <p>MAIN MUSIC: Stupid Enemy_まぬけけなてき</p>
+                                <p>OTHER SOUND EFFECTS: Public domain audio from Pixabay</p>
                             </span>
+                            <h3>GITHUB COLLABORATION</h3>
+                            <p>GitHub was used to work collaboratively on each stage and the visual novel aspects of the game. The lead developer was assigned
+                                responsibility to track pushes to the repository and fix any conflicts. Assets were shared through GitHub via a main game folder.
+                            </p>
                             <h3>AI USAGE</h3>
                             <p>This game used AI for assistance with JavaScript development and CSS styling.</p>
                             <p>No generative AI was used for the creation of any game assets or content.</p>
@@ -213,12 +210,14 @@
                             </ul>
                         </div>
                     </div>
+
                     <!-- VISUAL NOVEL -->
                     <div id="dialogue">
                         <h3 id="name"></h3>
                         <p id="textbox"></p>
                         <button id="nextbtn" onclick="playClickSound()">NEXT</button>
                     </div>
+
                     <!-- CANVAS LAYER -->
                     <div id="canvasBox">
                         <div id="timer"></div>
@@ -227,16 +226,7 @@
                     </div>
         </div>
 
-        <!-- STAGE 1 / FOOD -->
-
-
-        <!-- STAGE 2 / SOCCER -->
-
-
-        <!-- STAGE 3 / HIDE & SEEK -->
-
-
-
+        <footer>&#169; Von Miller, Tiffany Shin, Jamie Moulton 2026</footer>
 
         <!-- FOR LINKING TO CANVAS DISPLAY -->
         <img id="couch" class="hide" src="img/cushion-open.png">
@@ -247,6 +237,7 @@
         <img id="living-room" class="hide" src="img/hide-bg.png">
         <img id="drawer-layer" class="hide" src="img/drawer-layer.png">
 
+        <!-- STAGES -->
         <script src="js/stage-food.js"></script>
         <script src="js/stage-bath.js"></script>
         <script src="js/stage-hide.js"></script>
@@ -255,6 +246,11 @@
 
         <!-- UI LOGIC-->
         <script>
+            /* GAME MENTOR LOGS
+            1. https://chatgpt.com/share/69f8c641-4200-83e8-97c1-0be755128efd
+            2. https://chatgpt.com/share/69f8c657-0cac-83e8-9e43-5f226c78b6ad
+            */
+
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext('2d');
 

@@ -124,6 +124,7 @@ canvas.addEventListener("click", (e) => {
             if (obj.win === true && obj.isOpen === false) {
                 gameState = "win";
                 console.log(gameState);
+                timerDisplay.style.display = "none";
                 resumeVN(endDialogue);
             }
 

@@ -12,43 +12,60 @@ is displayed and the VN GUI is hidden.
 
 */
 
-// GAME MENTOR
+// DEVELOPER: VON MILLER
+/* GAME MENTOR LOGS
+1. https://chatgpt.com/share/69f8c641-4200-83e8-97c1-0be755128efd
+2. https://chatgpt.com/share/69f8c657-0cac-83e8-9e43-5f226c78b6ad
+*/
+
 let currentLine = 0;
+let gameLocked = false;
+
 
 let introDialogue = {
-    speaker: "You",
     text: ["ONE LATE NIGHT YOU HEAR A SCRATCHING SOUND AT YOUR DOOR . . .", '"WOAH! What are you doing here, little guy?"', "You look upset. Do you want a snack?"],
     background: ["img/door-close.png", "img/door-open.png"],
     sprite: [null, "img/nightcrawler-sad.svg"],
+    audio: ["audio/scratch.mp3","audio/angry-noise.mp3","audio/happy-noise.mp3"],
     trigger: stage1
 };
 
 let afterFoodDialogue = {
-    speaker: "You",
     text: ["You look a lot better now that you've had a meal!", "Wish you didn't eat my pet fish, though. . .", "Now what do you want to do?"],
     background: "img/food-bg.png",
     sprite: "img/nightcrawler-happy.svg",
+    audio: ["audio/happy-noise.mp3","audio/angry-noise.mp3","audio/thinking-noise.mp3"],
     trigger: stage2
 };
 
 let afterSoccerDialogue = {
-    speaker: "You",
     text: ["AFTER YOUR SOCCER GAME YOU HEAD BACK INSIDE", "Phew, that was a good game!", "Aww don't look so mad - Wait where are you going?!"],
     background: ["img/soccer-bg.png", "img/door-open.png", "img/door-close.png"],
     sprite: [null, "img/nightcrawler-angry.svg", "img/nightcrawler-angry.svg"],
+    audio: [null, "audio/angry-noise.mp3", "audio/run.mp3"],
     trigger: startStage3
 };
 
 // After Stage 3: Hide & Seek
 let endDialogue = {
-    speaker: "You",
     text: ["Wow! That was a good hiding spot.", "I'm glad we could play together... and you didn't even try to eat me!", "It is 3 AM though, and I'm getting exhausted.", "YOU MAKE YOUR WAY TO YOUR BEDROOM, THE CREATURE FOLLOWING CLOSE BEHIND", "Sweet dreams little fellow! This truly was the strangest night of my life.", "THE END!"],
     background: ["img/hide-bg.png", "img/hide-bg.png", "img/hide-bg.png", "img/bedroom1.png", "img/bedroom2.png", "img/bedroom2.png"],
     sprite: null,
-    trigger: null
+    audio: ["audio/happy-noise.mp3", "audio/thinking-noise.mp3", null, null, "audio/sleeping-noise.mp3"],
+    trigger: restart
 };
 
+let gameOverDialogue = {
+    text: ["GAME OVER"],
+    background: ["img/door-close.png"],
+    sprite: ["img/nightcrawler-monster.svg"],
+    audio: ["audio/growl.mp3"],
+    trigger: restart
+}
+
 let currentDialogue = introDialogue;
+let currentAudio = new Audio();
+currentAudio.volume = 0.1;
 
 let dialogueText = document.getElementById("textbox");
 
@@ -65,6 +82,7 @@ document.getElementById("nextbtn").addEventListener("click", function () {
     currentLine += 1;
     if (currentLine < currentDialogue.text.length) {
         dialogueText.textContent = currentDialogue.text[currentLine];
+        playLineAudio();
         drawDialogueScene();
     }
     else {
@@ -144,6 +162,25 @@ function drawDialogueScene() {
     }
 }
 
+function playLineAudio() {
+
+    let audioSrc;
+
+
+    if (Array.isArray(currentDialogue.audio)) {
+        audioSrc = currentDialogue.audio[currentLine];
+    } else {
+        audioSrc = currentDialogue.audio;
+    }
+
+    if (!audioSrc) return;
+
+    currentAudio.pause();
+    currentAudio = new Audio(audioSrc);
+    currentAudio.volume = 0.3;
+    currentAudio.play();
+}
+
 function resumeVN(nextDialogue) {
     currentDialogue = nextDialogue;
     currentLine = 0;
@@ -158,8 +195,24 @@ function resumeVN(nextDialogue) {
 }
 
 function gameOver() {
-    document.getElementById("canvasBox").style.display = "none";
+    document.getElementById("score").textContent = "";
+    timerDisplay.style.display = "none";
+
+    gameLocked = true;
+
+    currentDialogue = gameOverDialogue;
+    currentLine = 0;
+
     document.getElementById("dialogue").style.display = "block";
-    document.getElementById("nextbtn").style.display = "none";
-    dialogueText.textContent = "Game over!"
+    document.getElementById("canvasBox").style.display = "block";
+
+    dialogueText.textContent = currentDialogue.text[currentLine];
+
+    playLineAudio();
+    drawDialogueScene();
+}
+
+function restart() {
+    window.location.reload();
+    gameBox.style.display = "flex";
 }

@@ -26,7 +26,6 @@ let spriteX
 let spriteY
 let roundsWon = 0;
 let silhouetteTime = 3000;
-let canClick = false;
 let showSilhouette = true;
 let correctFood = null;
 let silhouetteImage = new Image();
@@ -45,7 +44,6 @@ fooditems.forEach(food => {
 
 
 canvas.addEventListener("click", function (event) {
-    if (!canClick) return;
 
     let mouseX = event.offsetX;
     let mouseY = event.offsetY;
@@ -108,7 +106,6 @@ function startRound() {
 
     // show silhouette first
     showSilhouette = true;
-    canClick = false;
 
     silhouetteImage.src = correctFood.silhouette;
 
@@ -119,7 +116,6 @@ function startRound() {
     // hide silhouette after timer ends
     setTimeout(function () {
         showSilhouette = false;
-        canClick = true;
         drawStage1();
     }, silhouetteTime);
 }
@@ -145,6 +141,7 @@ function drawStage1() {
         ctx.drawImage(silhouetteImage, spriteX, spriteY - 100, 120, 120);
     }
     ctx.restore();
+    document.getElementById("score").textContent = roundsWon + " / 5";
 
 };
 

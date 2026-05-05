@@ -147,6 +147,10 @@ function startStage3() {
 
 function stage3(timestamp) {
 
+    if (gameState !== "playing") {
+    return;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(livingRoom, 0, 0, 600, 450);
 

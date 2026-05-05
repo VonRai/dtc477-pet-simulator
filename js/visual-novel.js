@@ -42,9 +42,9 @@ let afterSoccerDialogue = {
 // After Stage 3: Hide & Seek
 let endDialogue = {
     speaker: "You",
-    text: ["Text1", "Text2", "Text3"],
-    background: "bedroom.png",
-    sprite: "creature.png",
+    text: ["Wow! That was a good hiding spot.", "I'm glad we could play together... and you didn't even try to eat me!", "It is 3 AM though, and I'm getting exhausted.", "YOU MAKE YOUR WAY TO YOUR BEDROOM, THE CREATURE FOLLOWING CLOSE BEHIND", "Sweet dreams little fellow! This truly was the strangest night of my life.", "THE END!"],
+    background: ["img/hide-bg.png", "img/hide-bg.png", "img/hide-bg.png", "img/bedroom1.png", "img/bedroom2.png", "img/bedroom2.png"],
+    sprite: null,
     trigger: null
 };
 
@@ -112,6 +112,7 @@ function drawDialogueScene() {
     };
 
     dialogueBackground.src = bgSrc;
+    console.log(currentLine, bgSrc);
 
     // 4. Load sprite ONLY if it exists
     if (spriteSrc) {
@@ -151,6 +152,8 @@ function resumeVN(nextDialogue) {
     document.getElementById("dialogue").style.display = "block";
 
     dialogueText.textContent = currentDialogue.text[currentLine];
+    document.getElementById("score").textContent = "";
+
     drawDialogueScene();
 }
 

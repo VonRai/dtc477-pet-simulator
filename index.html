@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Aclonica&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <title>NIGHT ENCOUNTER</title>
 </head>
@@ -24,246 +26,425 @@
         <div class="loader"></div>
     </div>
 
-    <div id="gameBox">
-        <div id="dragBar">
-            <span>Night Encounter</span>
+    <div id="gameQuit">
+        <p>Are you sure you want to quit?</p>
+        <button onclick="confirmQuit()">YES</button>
+        <button onclick="cancelQuit()">NO</button>
+    </div>
+
+    <div id="helpBox">
+        <div id="dragBar2">
+            <span>Help</span>
             <div id="dragUI">
-                <span id="volumeMute" onclick="muteAudio()">
-                    <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <span id="quit" onclick="quitHelp()">
+                    <svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
+                        fill="#ffffff">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
-                            <path d="M6 1H8V15H6L2 11H0V5H2L6 1Z" fill="#ffffff"></path>
-                            <path d="M14 8C14 5.79086 12.2091 4 10 4V2C13.3137 2 16 4.68629 16 8C16 11.3137 13.3137 14 10 14V12C12.2091 12 14 10.2091 14 8Z" fill="#ffffff"></path>
-                            <path d="M12 8C12 9.10457 11.1046 10 10 10V6C11.1046 6 12 6.89543 12 8Z" fill="#ffffff"></path>
-                        </g>
-                    </svg>
-                </span>
-                <span id="volumePlay" onclick="playMusic()">
-                    <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <path d="M8 1H6L2 5H0V11H2L6 15H8V1Z" fill="#ffffff"></path>
-                            <path d="M9.29289 6.20711L11.0858 8L9.29289 9.79289L10.7071 11.2071L12.5 9.41421L14.2929 11.2071L15.7071 9.79289L13.9142 8L15.7071 6.20711L14.2929 4.79289L12.5 6.58579L10.7071 4.79289L9.29289 6.20711Z" fill="#ffffff"></path>
-                        </g>
-                    </svg>
-                </span>
-                <span id="quit" onclick="closeGame()">
-                    <svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <path fill="#ffffff" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"></path>
+                            <path fill="#ffffff"
+                                d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z">
+                            </path>
                         </g>
                     </svg>
                 </span>
             </div>
         </div>
-        <div id="title">
-            <h1>NIGHT ENCOUNTER</h1>
-            <h2>WILL THEY CRAWL INTO YOUR HEART?</h2>
-            <button id="startbtn" onclick="playClickSound()">START</button>
-            <button id="creditsbtn" onclick="playClickSound()">CREDITS</button>
-        </div>
-        <div id="credits">
-            <span id="backBtn" onclick="playClickSound()">
-                <svg fill="#26123a" width="25px" height="25px" viewBox="0 0 200 200" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" stroke="#26123a">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <title></title>
-                        <path d="M160,89.75H56l53-53a9.67,9.67,0,0,0,0-14,9.67,9.67,0,0,0-14,0l-56,56a30.18,30.18,0,0,0-8.5,18.5c0,1-.5,1.5-.5,2.5a6.34,6.34,0,0,0,.5,3,31.47,31.47,0,0,0,8.5,18.5l56,56a9.9,9.9,0,0,0,14-14l-52.5-53.5H160a10,10,0,0,0,0-20Z"></path>
-                    </g>
-                </svg>
-            </span>
-            <h3>CREATORS</h3>
-            <span class="creator">
-                <h4>VON MILLER</h4>
-                <p>VISUAL NOVEL, FOOD STAGE, AUDIO, CSS & UI</p>
-            </span>
-            <span class="creator">
-                <h4>TIFFANY SHIN</h4>
-            </span>
-            <span class="creator">
-                <h4>JAMIE MOULTON</h4>
-            </span>
-            <h3>AUDIO</h3>
-            <span class="creator">
-                <h4><a href="https://pixabay.com/users/retro-bgm-chan-55246343/" target="_blank">RETRO-BGM-CHAN | PIXABAY</a></h4>
-                <p>INTRO MUSIC: Convenience Store_こんびに</p>
-                <p>MAIN MUSIC: Stupid Enemy_まぬけけなてき</p>
-            </span>
-        </div>
-        <!-- VISUAL NOVEL -->
-        <div id="dialogue">
-            <h3 id="name"></h3>
-            <p id="textbox"></p>
-            <button id="nextbtn" onclick="playClickSound()">NEXT</button>
-        </div>
-        <!-- CANVAS LAYER -->
-        <div id="canvasBox">
-            <div id="timer"></div>
-            <canvas id="canvas" width="600" height="450"></canvas>
+        <div id="helpContent">
+            <h2>Instructions</h2>
+            <p><span class="bold"">Welcome to Night Encounter!</span>
+                <br>Click the start button to begin. Click the about button for more information
+                on the creation of the game.</p>
+            <ul>
+                <li>Once you enter the game, click the next button to proceed through the story.</li>
+            </ul>
+            <h3>Stage 1</h3>
+            <ul>
+                <li>In this stage, you will feed the Nightcrawler its favorite foods!</li>
+                <li>Wait for the thought bubble to appear, and click the matching food item to feed it.</li>
+                <li>But be careful! If you click the wrong food item, the Nightcrawler might get upset.</li>
+            </ul>
+            <h3>Stage 2</h3>
+            <ul>
+                <li>In this stage, you will play a game of soccer with the Nightcrawler!</li>
+                <li>Use the arrow keys to move up and down the screen, and try to hit the ball past the Nightcrawler.
+                </li>
+                <li>If the ball hits the left side of the screen, you will score a point. If it hits the right side, the
+                    Nightcrawler will score.</li>
+                <li>Try and make it to 5 points to proceed to the next stage!</li>
+            </ul>
+            <h3>Stage 3</h3>
+            <ul>
+                <li>In this stage, you will play hide and seek with the Nightcrawler!</li>
+                <li>Quickly click around the screen to find the Nightcrawler.</li>
+                <li>Try and find it before the time runs out!</li>
+            </ul>
         </div>
     </div>
 
-    <!-- STAGE 1 / FOOD -->
+    <div id="gameBox">
+                    <div id="dragBar1">
+                        <span>Night Encounter</span>
+                        <div id="dragUI">
+                            <span id="help" onclick="openHelp()">
+                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM7.92 9.234v.102a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-1.29.998-1.979 2.34-1.979 1.308 0 2.168.689 2.168 1.67 0 .928-.482 1.359-1.686 1.91l-.344.154C11.379 11.54 11 12.21 11 13.381v.119a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-.516.138-.723.55-.912l.345-.155c1.445-.654 2.529-1.514 2.529-3.39v-.103c0-1.978-1.72-3.441-4.164-3.441-2.478 0-4.336 1.428-4.336 3.734zm2.58 7.757c0 .867.659 1.509 1.491 1.509.85 0 1.509-.642 1.509-1.509 0-.867-.659-1.491-1.509-1.491-.832 0-1.491.624-1.491 1.491z"
+                                            fill="#ffffff"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                            <span id="volumeMute" onclick="muteAudio()">
+                                <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path d="M6 1H8V15H6L2 11H0V5H2L6 1Z" fill="#ffffff"></path>
+                                        <path
+                                            d="M14 8C14 5.79086 12.2091 4 10 4V2C13.3137 2 16 4.68629 16 8C16 11.3137 13.3137 14 10 14V12C12.2091 12 14 10.2091 14 8Z"
+                                            fill="#ffffff"></path>
+                                        <path d="M12 8C12 9.10457 11.1046 10 10 10V6C11.1046 6 12 6.89543 12 8Z"
+                                            fill="#ffffff">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </span>
+                            <span id="volumePlay" onclick="playMusic()">
+                                <svg width="20px" height="20px" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path d="M8 1H6L2 5H0V11H2L6 15H8V1Z" fill="#ffffff"></path>
+                                        <path
+                                            d="M9.29289 6.20711L11.0858 8L9.29289 9.79289L10.7071 11.2071L12.5 9.41421L14.2929 11.2071L15.7071 9.79289L13.9142 8L15.7071 6.20711L14.2929 4.79289L12.5 6.58579L10.7071 4.79289L9.29289 6.20711Z"
+                                            fill="#ffffff"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                            <span id="quit" onclick="openQuit()">
+                                <svg width="20px" height="20px" viewBox="0 0 1024 1024"
+                                    xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path fill="#ffffff"
+                                            d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div id="title">
+                        <h1>NIGHT ENCOUNTER</h1>
+                        <h2>WILL THEY CRAWL INTO YOUR HEART?</h2>
+                        <button id="startbtn" onclick="playClickSound()">START</button>
+                        <button id="creditsbtn" onclick="playClickSound()">CREDITS</button>
+                    </div>
+                    <div id="credits">
+                        <span id="backBtn" onclick="playClickSound()">
+                            <svg fill="#26123a" width="25px" height="25px" viewBox="0 0 200 200" data-name="Layer 1"
+                                id="Layer_1" xmlns="http://www.w3.org/2000/svg" stroke="#26123a">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <title></title>
+                                    <path
+                                        d="M160,89.75H56l53-53a9.67,9.67,0,0,0,0-14,9.67,9.67,0,0,0-14,0l-56,56a30.18,30.18,0,0,0-8.5,18.5c0,1-.5,1.5-.5,2.5a6.34,6.34,0,0,0,.5,3,31.47,31.47,0,0,0,8.5,18.5l56,56a9.9,9.9,0,0,0,14-14l-52.5-53.5H160a10,10,0,0,0,0-20Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                        <div id="creditsContent">
+                            <h2>ABOUT THE GAME</h2>
+                            <p>Night Encounter is a visual novel point-and-click game where players welcome a mysterious Nightcrawler into their home and must care for it, or face the consequences. Will you befriend the creature or become its next meal?</p>
+                            <p>Intended for a young audience that enjoys interactive storytelling and a spooky atmosphere.</p>
+                            <p>Playtime: Approximately 5-10 minutes</p>
+                            <h3>WHAT IS A NIGHTCRAWLER?</h3>
+                            <p>The Nightcrawler is a cryptid first sited in Fresno, California in 2007. The unidentified creature has been identified as having long legs and no arms - Like a pair of walking pants!</p>
+                            <p>As most cryptids, the Nightcrawler remains largely mysterious, with sightings reported in various locations across the United States.</p>
+                            <p>In media, it has become a beloved figure by the cryptid community!</p>
+                            <a href="https://cryptidz.fandom.com/wiki/Fresno_Nightcrawler" target="_blank">Learn more at the Cryptid Wiki</a>
+                            <h3>CREATORS</h3>
+                            <span class="creator">
+                                <h4>VON MILLER</h4>
+                                <ul>
+                                    <li>Lead Developer</li>
+                                    <li>Audio Design</li>
+                                    <li>Stage 1 Designer</li>
+                                </ul>
+                            </span>
+                            <span class="creator">
+                                <h4>JAMIE MOULTON</h4>
+                                <ul>
+                                    <li>Character Artist</li>
+                                    <li>Stage 2 Designer</li>
+                                </ul>
+                            </span>
+                            <span class="creator">
+                                <h4>TIFFANY SHIN</h4>
+                                <ul>
+                                    <li>Background Artist</li>
+                                    <li>Storyboarding</li>
+                                    <li>Stage 3 Designer</li>
+                                </ul>
+                            </span>
+                            <h3>AUDIO</h3>
+                            <span class="creator">
+                                <h4><a href="https://pixabay.com/users/retro-bgm-chan-55246343/"
+                                        target="_blank">RETRO-BGM-CHAN |
+                                        PIXABAY</a></h4>
+                                <p>INTRO MUSIC: Convenience Store_こんびに</p>
+                                <p>MAIN MUSIC: Stupid Enemy_まぬけけなてき</p>
+                            </span>
+                            <h3>AI USAGE</h3>
+                            <p>This game used AI for assistance with JavaScript development and CSS styling.</p>
+                            <p>No generative AI was used for the creation of any game assets or content.</p>
+                            <h4>AI CHAT LOGS:</h4>
+                            <ul>
+                                <li><a href="https://chatgpt.com/share/69f8c641-4200-83e8-97c1-0be755128efd" target="_blank">Game development</a></li>
+                                <li><a href="https://chatgpt.com/share/69f8c657-0cac-83e8-9e43-5f226c78b6ad" target="_blank">UI design</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- VISUAL NOVEL -->
+                    <div id="dialogue">
+                        <h3 id="name"></h3>
+                        <p id="textbox"></p>
+                        <button id="nextbtn" onclick="playClickSound()">NEXT</button>
+                    </div>
+                    <!-- CANVAS LAYER -->
+                    <div id="canvasBox">
+                        <div id="timer"></div>
+                        <div id="score"></div>
+                        <canvas id="canvas" width="600" height="450"></canvas>
+                    </div>
+        </div>
+
+        <!-- STAGE 1 / FOOD -->
 
 
-    <!-- STAGE 2 / SOCCER -->
+        <!-- STAGE 2 / SOCCER -->
 
 
-    <!-- STAGE 3 / HIDE & SEEK -->
+        <!-- STAGE 3 / HIDE & SEEK -->
 
 
 
 
-    <!-- FOR LINKING TO CANVAS DISPLAY -->
-    <img id="couch" class="hide" src="img/cushion-open.png">
-    <img id="lamp" class="hide" src="img/lamp-open.png">
-    <img id="drawer" class="hide" src="img/drawer-open.png">
-    <img id="safe" class="hide" src="img/painting-open.png">
-    <img id="carpet" class="hide" src="img/carpet-open.png">
-    <img id="living-room" class="hide" src="img/hide-bg.png">
-    <img id="drawer-layer" class="hide" src="img/drawer-layer.png">
+        <!-- FOR LINKING TO CANVAS DISPLAY -->
+        <img id="couch" class="hide" src="img/cushion-open.png">
+        <img id="lamp" class="hide" src="img/lamp-open.png">
+        <img id="drawer" class="hide" src="img/drawer-open.png">
+        <img id="safe" class="hide" src="img/painting-open.png">
+        <img id="carpet" class="hide" src="img/carpet-open.png">
+        <img id="living-room" class="hide" src="img/hide-bg.png">
+        <img id="drawer-layer" class="hide" src="img/drawer-layer.png">
 
-    <script src="js/stage-food.js"></script>
-    <script src="js/stage-bath.js"></script>
-    <script src="js/stage-hide.js"></script>
-    <script src="js/stage-soccer.js"></script>
-    <script src="js/visual-novel.js"></script>
+        <script src="js/stage-food.js"></script>
+        <script src="js/stage-bath.js"></script>
+        <script src="js/stage-hide.js"></script>
+        <script src="js/stage-soccer.js"></script>
+        <script src="js/visual-novel.js"></script>
 
-    <!-- UI LOGIC-->
-    <script>
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext('2d');
+        <!-- UI LOGIC-->
+        <script>
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext('2d');
 
-        let timerDisplay = document.getElementById("timer");
-        timerDisplay.style.display = "none";
+            let timerDisplay = document.getElementById("timer");
+            timerDisplay.style.display = "none";
 
-        let gameLoad = document.getElementById("gameLoad");
-        let gameBox = document.getElementById("gameBox");
+            let gameLoad = document.getElementById("gameLoad");
+            let gameBox = document.getElementById("gameBox");
 
 
-        function Load() {
-            if (getComputedStyle(gameBox).display === "none") {
-                gameLoad.style.display = "flex";
-                const loadTime = setTimeout(openGame, 2000);
-            } else {
-                return;
+            function Load() {
+                if (getComputedStyle(gameBox).display === "none") {
+                    gameLoad.style.display = "flex";
+                    const loadTime = setTimeout(openGame, 2000);
+                } else {
+                    return;
+                }
             }
-        }
 
-        function openGame() {
-            gameLoad.style.display = "none";
-            gameBox.style.display = "flex";
-            playMusic();
-        }
-
-        function closeGame() {
-            gameBox.style.display = "none";
-
-            introMusic.pause();
-            introMusic.currentTime = 0;
-        }
-
-        document.getElementById("creditsbtn").addEventListener("click", function () {
-            document.getElementById("title").style.display = "none";
-            document.getElementById("dialogue").style.display = "none";
-            document.getElementById("credits").style.display = "flex";
-        });
-
-        document.getElementById("backBtn").addEventListener("click", function () {
-            document.getElementById("title").style.display = "flex";
-            document.getElementById("credits").style.display = "none";
-        });
-
-
-        // Make the DIV element draggable:
-        dragElement(document.getElementById("gameBox"));
-
-        function dragElement(element) {
-            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            if (document.getElementById("dragBar")) {
-                // if present, the header is where you move the DIV from:
-                document.getElementById("dragBar").onmousedown = dragMouseDown;
-            } else {
-                // otherwise, move the DIV from anywhere inside the DIV:
-                element.onmousedown = dragMouseDown;
+            function openGame() {
+                gameLoad.style.display = "none";
+                gameBox.style.display = "flex";
+                playMusic();
             }
 
-            function dragMouseDown(e) {
-                e = e || window.event;
-                e.preventDefault();
-                // get the mouse cursor position at startup:
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                // call a function whenever the cursor moves:
-                document.onmousemove = elementDrag;
+            function openQuit() {
+                document.getElementById("gameQuit").style.display = "flex";
             }
 
-            function elementDrag(e) {
-                e = e || window.event;
-                e.preventDefault();
-                // calculate the new cursor position:
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                // set the element's new position:
-                element.style.top = (element.offsetTop - pos2) + "px";
-                element.style.left = (element.offsetLeft - pos1) + "px";
+            function confirmQuit() {
+                window.location.reload();
             }
 
-            function closeDragElement() {
-                // stop moving when mouse button is released:
-                document.onmouseup = null;
-                document.onmousemove = null;
+            function cancelQuit() {
+                document.getElementById("gameQuit").style.display = "none";
             }
-        }
 
-        //AUDIO
+            function openHelp() {
+                const helpBox = document.getElementById("helpBox");
+                if (getComputedStyle(helpBox).display === "none") {
+                    helpBox.style.display = "flex";
+                } else {
+                    helpBox.style.display = "none";
+                }
+            }
 
-        const clickSound = new Audio("audio/click.mp3");
-        const introMusic = new Audio("audio/intro-music.mp3");
-        const mainMusic = new Audio("audio/main-music.mp3");
+            function quitHelp() {
+                document.getElementById("helpBox").style.display = "none";
+            }
 
-        clickSound.volume = 0.5;
-        introMusic.volume = 0.1;
-        introMusic.loop = true; // keeps music looping
-        mainMusic.volume = 0.1;
-        mainMusic.loop = true;
+            document.getElementById("creditsbtn").addEventListener("click", function () {
+                document.getElementById("title").style.display = "none";
+                document.getElementById("dialogue").style.display = "none";
+                document.getElementById("credits").style.display = "flex";
+            });
 
-        let currentMusic = introMusic
+            document.getElementById("backBtn").addEventListener("click", function () {
+                document.getElementById("title").style.display = "flex";
+                document.getElementById("credits").style.display = "none";
+            });
 
-        document.getElementById("startbtn").addEventListener("click", function () {
-            currentMusic.pause();
-            currentMusic = mainMusic;
-            playMusic();
-        });
 
-        function playClickSound() {
-            clickSound.currentTime = 0;
-            clickSound.play();
-        }
+            // Make the DIV element draggable:
+            dragElement1(document.getElementById("gameBox"));
+            dragElement2(document.getElementById("helpBox"));
 
-        function playMusic() {
-            document.getElementById("volumePlay").style.display = "none";
-            document.getElementById("volumeMute").style.display = "flex";
 
-            currentMusic.play();
-        }
+            function dragElement1(element) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                if (document.getElementById("dragBar1")) {
+                    // if present, the header is where you move the DIV from:
+                    document.getElementById("dragBar1").onmousedown = dragMouseDown;
+                } else {
+                    // otherwise, move the DIV from anywhere inside the DIV:
+                    element.onmousedown = dragMouseDown;
+                }
 
-        function muteAudio() {
-            document.getElementById("volumeMute").style.display = "none";
-            document.getElementById("volumePlay").style.display = "flex";
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // get the mouse cursor position at startup:
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    // call a function whenever the cursor moves:
+                    document.onmousemove = elementDrag;
+                }
 
-            currentMusic.pause();
-        }
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // calculate the new cursor position:
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // set the element's new position:
+                    element.style.top = (element.offsetTop - pos2) + "px";
+                    element.style.left = (element.offsetLeft - pos1) + "px";
+                }
 
-    </script>
+                function closeDragElement() {
+                    // stop moving when mouse button is released:
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+
+            function dragElement2(element) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                if (document.getElementById("dragBar2")) {
+                    // if present, the header is where you move the DIV from:
+                    document.getElementById("dragBar2").onmousedown = dragMouseDown;
+                } else {
+                    // otherwise, move the DIV from anywhere inside the DIV:
+                    element.onmousedown = dragMouseDown;
+                }
+
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // get the mouse cursor position at startup:
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    // call a function whenever the cursor moves:
+                    document.onmousemove = elementDrag;
+                }
+
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // calculate the new cursor position:
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // set the element's new position:
+                    element.style.top = (element.offsetTop - pos2) + "px";
+                    element.style.left = (element.offsetLeft - pos1) + "px";
+                }
+
+                function closeDragElement() {
+                    // stop moving when mouse button is released:
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+
+
+            //AUDIO
+
+            const clickSound = new Audio("audio/click.mp3");
+            const introMusic = new Audio("audio/intro-music.mp3");
+            const mainMusic = new Audio("audio/main-music.mp3");
+
+            clickSound.volume = 0.5;
+            introMusic.volume = 0.1;
+            introMusic.loop = true; // keeps music looping
+            mainMusic.volume = 0.1;
+            mainMusic.loop = true;
+
+            let currentMusic = introMusic
+
+            document.getElementById("startbtn").addEventListener("click", function () {
+                currentMusic.pause();
+                currentMusic = mainMusic;
+                playMusic();
+            });
+
+            function playClickSound() {
+                clickSound.currentTime = 0;
+                clickSound.play();
+            }
+
+            function playMusic() {
+                document.getElementById("volumePlay").style.display = "none";
+                document.getElementById("volumeMute").style.display = "flex";
+
+                currentMusic.play();
+            }
+
+            function muteAudio() {
+                document.getElementById("volumeMute").style.display = "none";
+                document.getElementById("volumePlay").style.display = "flex";
+
+                currentMusic.pause();
+            }
+
+        </script>
 
 </body>
 

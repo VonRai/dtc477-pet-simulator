@@ -49,7 +49,7 @@ let afterSoccerDialogue = {
 // After Stage 3: Hide & Seek
 let endDialogue = {
     text: ["Wow! That was a good hiding spot.", "I'm glad we could play together... and you didn't even try to eat me!", "It is 3 AM though, and I'm getting exhausted.", "YOU MAKE YOUR WAY TO YOUR BEDROOM, THE CREATURE FOLLOWING CLOSE BEHIND", "Sweet dreams little fellow! This truly was the strangest night of my life.", "THE END!"],
-    background: ["img/hide-bg.png", "img/hide-bg.png", "img/hide-bg.png", "img/bedroom1.png", "img/bedroom2.png", "img/bedroom2.png"],
+    background: ["img/end-hide-1.png", "img/end-hide-2.png", "img/end-hide-2.png", "img/bedroom1.png", "img/bedroom2.png", "img/bedroom2.png"],
     sprite: null,
     audio: ["audio/happy-noise.mp3", "audio/thinking-noise.mp3", null, null, "audio/sleeping-noise.mp3"],
     trigger: restart

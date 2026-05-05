@@ -1,8 +1,21 @@
-/* */
+// DEVELOPER: TIFFANY SHIN
 
-// LOGIC STEPS
+/* LOGIC STEPS
+1. Upon loading the stage a canvas environment is drawn,
+consisting of a background image layered with several interactable objects.
+2. Each object has its x and y positions recorded in both open and shut states, along with
+being linked to their respective png images.
+3. The event listener tracks the mouse position and checks if the cursor is
+within the x and y position of any given object with each click.
+4. If upon click, the cursor is within the x and y range of an object, the states
+are toggled, and can be toggled indefinitely.
+5. If the lampshade is selected, the win state is triggered and the stage transitions
+back into dialogue.
+*/
 
-// GAME MENTOR
+/* GAME MENTOR CHAT LOG
+https://chatgpt.com/share/69fa5196-aeb4-83e8-b451-f04046a32393
+*/
 
 ctx = canvas.getContext('2d');
 let couchOpen = document.getElementById("couch");
